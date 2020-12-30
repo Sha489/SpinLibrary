@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="da53eac7-75dc-4eeb-a147-654c4306f680" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../spin-and-win/src/main/assets/fonts/STCForward-Bold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spin-and-win/src/main/assets/fonts/STCForward-Medium.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spin-and-win/src/main/assets/fonts/STCForward-Regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spin-and-win/src/main/java/com/app/spin_and_win/AppController.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spin-and-win/src/main/java/com/app/spin_and_win/adapter/TermsAdapter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spin-and-win/src/main/java/com/app/spin_and_win/fragments/TermsBottomSheetFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spin-and-win/src/main/java/com/app/spin_and_win/listeners/RedirectListener.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spin-and-win/src/main/java/com/app/spin_and_win/model/Terms.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spin-and-win/src/main/java/com/app/spin_and_win/network/APIClient.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spin-and-win/src/main/java/com/app/spin_and_win/network/APIConstants.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spin-and-win/src/main/java/com/app/spin_and_win/network/APIInterface.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spin-and-win/src/main/java/com/app/spin_and_win/ui/BaseActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spin-and-win/src/main/java/com/app/spin_and_win/ui/PlayNowActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spin-and-win/src/main/java/com/app/spin_and_win/utils/DateUtils.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spin-and-win/src/main/java/com/app/spin_and_win/utils/DisplayUtils.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spin-and-win/src/main/java/com/app/spin_and_win/utils/NetworkUtils.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spin-and-win/src/main/java/com/app/spin_and_win/utils/sharedPrefrence/PrefKeys.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spin-and-win/src/main/java/com/app/spin_and_win/utils/sharedPrefrence/PrefUtils.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spin-and-win/src/main/res/anim/rotate_image_anim.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spin-and-win/src/main/res/anim/slide_down_animation.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spin-and-win/src/main/res/anim/slide_up_animation.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spin-and-win/src/main/res/drawable/back_icon.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spin-and-win/src/main/res/drawable/ic_baseline_info_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spin-and-win/src/main/res/layout/activity_play_now.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spin-and-win/src/main/res/layout/dialog_game_complete.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spin-and-win/src/main/res/layout/item_terms.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spin-and-win/src/main/res/layout/terms_and_condition_fragment.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spin-and-win/src/main/res/raw/failure_sound.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spin-and-win/src/main/res/raw/success_sound.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spin-and-win/src/main/res/values/styles.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/main/java/com/app/gamification_mt/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/java/com/app/gamification_mt/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shake-and-win-mt/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../shake-and-win-mt/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spin-and-win/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../spin-and-win/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spin-and-win/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spin-and-win/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spin-and-win/src/main/java/com/app/spin_and_win/InitiateSpinAndWin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../spin-and-win/src/main/java/com/app/spin_and_win/ui/InitiateSpinAndWin.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spin-and-win/src/main/java/com/app/spin_and_win/SpinAndWinActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../spin-and-win/src/main/java/com/app/spin_and_win/ui/SpinAndWinActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spin-and-win/src/main/res/layout/activity_spin_and_win.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spin-and-win/src/main/res/layout/activity_spin_and_win.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spin-and-win/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spin-and-win/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spin-and-win/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spin-and-win/src/main/res/values/strings.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1lxV1UwIYI5TocJYlNzIHJoftAM" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="da53eac7-75dc-4eeb-a147-654c4306f680" name="Default Changelist" comment="" />
+      <created>1608538513438</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1608538513438</updated>
+    </task>
+    <servers />
+  </component>
+</project>
