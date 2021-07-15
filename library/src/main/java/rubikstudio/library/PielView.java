@@ -358,7 +358,7 @@ public class PielView extends View {
 
     public void rotateTo(final int index) {
         Random rand = new Random();
-        rotateTo(index, (rand.nextInt() * 3) % 2, true);
+        rotateTo(index, 0, true);
     }
 
     /**
