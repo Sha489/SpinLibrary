@@ -32,7 +32,7 @@ public class LuckyWheelView extends RelativeLayout implements PielView.PieRotate
     private Drawable mCenterImage;
     private Drawable mCursorImage;
 
-    private PielView pielView;
+    PielView pielView;
     private ImageView ivCursorView;
 
     private LuckyRoundItemSelectedListener mLuckyRoundItemSelectedListener;

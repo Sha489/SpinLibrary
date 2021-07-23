@@ -308,7 +308,7 @@ public class PielView extends View {
             mTextPaint.setColor(isColorDark(backgroundColor) ? 0xffffffff : 0xff000000);
 
         if (backgroundColor == -1) {
-            mTextPaint.setColor(Color.parseColor("#000000"));
+            mTextPaint.setColor(Color.parseColor("#222165"));
         } else {
             mTextPaint.setColor(Color.parseColor("#FFFFFF"));
         }
@@ -405,7 +405,7 @@ public class PielView extends View {
                         public void onAnimationRepeat(Animator animation) {
                         }
                     })
-                    .rotation(360f * multiplier * rotationAssess)
+                    .rotation(180f * multiplier * rotationAssess)
                     .start();
             return;
         }
@@ -414,7 +414,7 @@ public class PielView extends View {
         // if you still need to reach the same outcome of a positive degrees rotation with the number of rounds reversed.
         if (rotationAssess < 0) mRoundOfNumber++;
 
-        float targetAngle = ((360f * mRoundOfNumber * rotationAssess) + 260f - getAngleOfIndexTarget(index) - (360f / mLuckyItemList.size()) / 2);
+        float targetAngle = ((360f * mRoundOfNumber * rotationAssess) + 450f - getAngleOfIndexTarget(index) - (360f / mLuckyItemList.size()) / 2);
         animate()
                 .setInterpolator(new DecelerateInterpolator())
                 .setDuration(mRoundOfNumber * 1000 + 900L)
