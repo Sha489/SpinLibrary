@@ -316,7 +316,7 @@ public class PielView extends View {
         Typeface typeface = Typeface.create(Typeface.SERIF, Typeface.BOLD);
         mTextPaint.setTypeface(typeface);
         mTextPaint.setTextSize(28);
-        mTextPaint.setTextAlign(Paint.Align.LEFT);
+        mTextPaint.setTextAlign(Paint.Align.CENTER);
 
         float textWidth = mTextPaint.measureText(mStr);
 
@@ -332,8 +332,15 @@ public class PielView extends View {
         Path path = new Path();
         path.addRect(rect, Path.Direction.CW);
         path.close();
+
         canvas.rotate(initFloat + (arraySize / 18f), x, y);
-        canvas.drawTextOnPath(mStr, path, mTopTextPadding / 1f, mTextPaint.getTextSize() / 10f, mTextPaint);
+
+        for (String line: mStr.split(" ", 2)) {
+            canvas.drawText(line, x, y, mTextPaint);
+            y += mTextPaint.descent() - mTextPaint.ascent();
+        }
+
+//        canvas.drawTextOnPath(mStr, path, mTopTextPadding / 1f, mTextPaint.getTextSize() / 10f, mTextPaint);
         canvas.restore();
     }
 
