@@ -335,10 +335,20 @@ public class PielView extends View {
 
         canvas.rotate(initFloat + (arraySize / 18f), x, y);
 
-        for (String line: mStr.split(" ", 2)) {
-            canvas.drawText(line, x, y, mTextPaint);
+        if(mStr.length() > 10) {
+            String kept = mStr.substring(0, mStr.length() / 2);
+            canvas.drawText(kept, x, y, mTextPaint);
             y += mTextPaint.descent() - mTextPaint.ascent();
+
+            String remainder = mStr.substring(mStr.length()/2 + 1, mStr.length());
+            canvas.drawText(remainder, x, y, mTextPaint);
+        } else {
+            canvas.drawText(mStr, x, y, mTextPaint);
         }
+//        for (String line: mStr.split(" ", 2)) {
+//            canvas.drawText(line, x, y, mTextPaint);
+//
+//        }
 
 //        canvas.drawTextOnPath(mStr, path, mTopTextPadding / 1f, mTextPaint.getTextSize() / 10f, mTextPaint);
         canvas.restore();
