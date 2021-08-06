@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     fun setData() {
         luckyItems = ArrayList<LuckyItem>()
 
-        luckyItems?.add(LuckyItem("adss dghsjaak shshs sgshhs", ContextCompat.getColor(applicationContext, android.R.color.darker_gray)))
+        luckyItems?.add(LuckyItem("Earn 1000 points and win exiting awards..", ContextCompat.getColor(applicationContext, android.R.color.darker_gray)))
         luckyItems?.add(LuckyItem("adss", ContextCompat.getColor(applicationContext, R.color.white)))
         luckyItems?.add(LuckyItem("adss", ContextCompat.getColor(applicationContext, android.R.color.darker_gray)))
         luckyItems?.add(LuckyItem("adss", ContextCompat.getColor(applicationContext, R.color.white)))
