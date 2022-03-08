@@ -18,12 +18,14 @@ import android.os.Build;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
+import android.widget.Toast;
 
 import java.util.List;
 import java.util.Random;
@@ -313,9 +315,24 @@ public class PielView extends View {
             mTextPaint.setColor(Color.parseColor("#FFFFFF"));
         }
 
+//        DisplayMetrics displayMetrics = new DisplayMetrics();
+//        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+//        int height = displayMetrics.heightPixels;
+//        int width = displayMetrics.widthPixels;
+
         Typeface typeface = Typeface.create(Typeface.SERIF, Typeface.BOLD);
         mTextPaint.setTypeface(typeface);
-        mTextPaint.setTextSize(28);
+
+        if(getHeight() <= 320 && getWidth() <= 320){
+            mTextPaint.setTextSize(8);
+        } else if(getHeight() > 320 && getHeight() <= 650 && getWidth() > 320 && getWidth() <=650) {
+            mTextPaint.setTextSize(20);
+        } else if(getHeight() > 650 && getHeight() <= 1000 && getWidth() > 650 && getWidth() <= 1000){
+            mTextPaint.setTextSize(28);
+        } else {
+            mTextPaint.setTextSize(35);
+        }
+
         mTextPaint.setTextAlign(Paint.Align.CENTER);
 
         float textWidth = mTextPaint.measureText(mStr);
