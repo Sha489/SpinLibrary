@@ -28,9 +28,9 @@ class MainActivity : AppCompatActivity() {
 
         luckyWheelView?.setData(luckyItems)
         luckyWheelView?.setTouchEnabled(false)
-        luckyWheelView?.setBorderWidth(10)
+        luckyWheelView?.setBorderWidth(5)
         luckyWheelView?.setBorderColor(ContextCompat.getColor(applicationContext, R.color.white))
-        luckyWheelView?.setLuckyWheelBackgrouldColor(ContextCompat.getColor(applicationContext, R.color.white))
+        luckyWheelView?.setLuckyWheelBackgrouldColor(ContextCompat.getColor(applicationContext, R.color.black))
         luckyWheelView?.startLuckyWheelWithRandomTarget()
     }
 }

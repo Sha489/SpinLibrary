@@ -310,7 +310,7 @@ public class PielView extends View {
             mTextPaint.setColor(isColorDark(backgroundColor) ? 0xffffffff : 0xff000000);
 
         if (backgroundColor == -1) {
-            mTextPaint.setColor(Color.parseColor("#222165"));
+            mTextPaint.setColor(Color.parseColor("#000000"));
         } else {
             mTextPaint.setColor(Color.parseColor("#FFFFFF"));
         }
