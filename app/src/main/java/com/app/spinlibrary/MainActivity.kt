@@ -21,11 +21,19 @@ class MainActivity : AppCompatActivity() {
     fun setData() {
         luckyItems = ArrayList<LuckyItem>()
 
-        luckyItems?.add(LuckyItem("Earn 1000 points and win exiting awards..", ContextCompat.getColor(applicationContext, android.R.color.darker_gray)))
-        luckyItems?.add(LuckyItem("adss", ContextCompat.getColor(applicationContext, R.color.white)))
-        luckyItems?.add(LuckyItem("adss", ContextCompat.getColor(applicationContext, android.R.color.darker_gray)))
-        luckyItems?.add(LuckyItem("adss", ContextCompat.getColor(applicationContext, R.color.white)))
-
+        luckyItems?.add(LuckyItem(" Earn 1000 points and win", ContextCompat.getColor(applicationContext, android.R.color.darker_gray)))
+        luckyItems?.add(LuckyItem("", ContextCompat.getColor(applicationContext, android.R.color.white)))
+        luckyItems?.add(LuckyItem(" Spin wheel and win", ContextCompat.getColor(applicationContext, android.R.color.darker_gray)))
+        luckyItems?.add(LuckyItem("", ContextCompat.getColor(applicationContext, android.R.color.white)))
+        luckyItems?.add(LuckyItem(" win offers", ContextCompat.getColor(applicationContext, android.R.color.darker_gray)))
+        luckyItems?.add(LuckyItem("", ContextCompat.getColor(applicationContext, android.R.color.white)))
+        luckyItems?.add(LuckyItem(" exciting offers", ContextCompat.getColor(applicationContext, android.R.color.darker_gray)))
+        luckyItems?.add(LuckyItem("", ContextCompat.getColor(applicationContext, android.R.color.white)))
+        luckyItems?.add(LuckyItem(" exciting offers", ContextCompat.getColor(applicationContext, android.R.color.darker_gray)))
+        luckyItems?.add(LuckyItem("", ContextCompat.getColor(applicationContext, android.R.color.white)))
+        luckyItems?.add(LuckyItem(" exciting offers", ContextCompat.getColor(applicationContext, android.R.color.darker_gray)))
+        luckyItems?.add(LuckyItem("", ContextCompat.getColor(applicationContext, android.R.color.white)))
+        
         luckyWheelView?.setData(luckyItems)
         luckyWheelView?.setTouchEnabled(false)
         luckyWheelView?.setBorderWidth(5)

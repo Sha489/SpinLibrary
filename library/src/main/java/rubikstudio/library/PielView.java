@@ -326,7 +326,7 @@ public class PielView extends View {
         if(getHeight() <= 320 && getWidth() <= 320){
             mTextPaint.setTextSize(8);
         } else if(getHeight() > 320 && getHeight() <= 650 && getWidth() > 320 && getWidth() <=650) {
-            mTextPaint.setTextSize(20);
+            mTextPaint.setTextSize(15);
         } else if(getHeight() > 650 && getHeight() <= 1000 && getWidth() > 650 && getWidth() <= 1000){
             mTextPaint.setTextSize(28);
         } else {
@@ -352,9 +352,9 @@ public class PielView extends View {
 
         canvas.rotate(initFloat + (arraySize / 18f), x, y);
 
-        if(mStr.length() > 20) {
+        if(mStr.length() > 19) {
             String kept = mStr.substring(0, mStr.length() / 2);
-            canvas.drawText(kept, x, y, mTextPaint);
+            canvas.drawText(kept, x, + y, mTextPaint);
             y += mTextPaint.descent() - mTextPaint.ascent();
 
             String remainder = mStr.substring(mStr.length()/2, mStr.length());
