@@ -312,7 +312,7 @@ public class PielView extends View {
         if (backgroundColor == -1) {
             mTextPaint.setColor(Color.parseColor("#000000"));
         } else {
-            mTextPaint.setColor(Color.parseColor("#FFFFFF"));
+            mTextPaint.setColor(Color.parseColor("#FFDE88"));
         }
 
 //        DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -328,7 +328,7 @@ public class PielView extends View {
         } else if(getHeight() > 320 && getHeight() <= 650 && getWidth() > 320 && getWidth() <=650) {
             mTextPaint.setTextSize(15);
         } else if(getHeight() > 650 && getHeight() <= 1000 && getWidth() > 650 && getWidth() <= 1000){
-            mTextPaint.setTextSize(28);
+            mTextPaint.setTextSize(26);
         } else {
             mTextPaint.setTextSize(35);
         }
