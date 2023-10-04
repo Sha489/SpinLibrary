@@ -39,6 +39,8 @@ class MainActivity : AppCompatActivity() {
         luckyWheelView?.setBorderWidth(5)
         luckyWheelView?.setBorderColor(ContextCompat.getColor(applicationContext, R.color.white))
         luckyWheelView?.setLuckyWheelBackgrouldColor(ContextCompat.getColor(applicationContext, R.color.black))
-        luckyWheelView?.startLuckyWheelWithTargetIndex(0)
+        luckyWheelView?.startLuckyWheelWithTargetIndex(2)
+
+
     }
 }
