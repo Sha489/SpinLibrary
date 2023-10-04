@@ -328,7 +328,7 @@ public class PielView extends View {
         } else if(getHeight() > 320 && getHeight() <= 650 && getWidth() > 320 && getWidth() <=650) {
             mTextPaint.setTextSize(15);
         } else if(getHeight() > 650 && getHeight() <= 1000 && getWidth() > 650 && getWidth() <= 1000){
-            mTextPaint.setTextSize(26);
+            mTextPaint.setTextSize(26   );
         } else {
             mTextPaint.setTextSize(35);
         }
@@ -439,7 +439,7 @@ public class PielView extends View {
                         public void onAnimationRepeat(Animator animation) {
                         }
                     })
-                    .rotation(180f * multiplier * rotationAssess)
+                    .rotation(360f * multiplier * rotationAssess)
                     .start();
             return;
         }
