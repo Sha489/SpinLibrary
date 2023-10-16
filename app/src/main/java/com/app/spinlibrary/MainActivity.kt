@@ -31,8 +31,8 @@ class MainActivity : AppCompatActivity() {
         luckyItems?.add(LuckyItem("", ContextCompat.getColor(applicationContext, android.R.color.white)))
         luckyItems?.add(LuckyItem(" exciting offers", ContextCompat.getColor(applicationContext, android.R.color.darker_gray)))
         luckyItems?.add(LuckyItem("", ContextCompat.getColor(applicationContext, android.R.color.white)))
-        luckyItems?.add(LuckyItem(" exciting offers", ContextCompat.getColor(applicationContext, android.R.color.darker_gray)))
-        luckyItems?.add(LuckyItem("", ContextCompat.getColor(applicationContext, android.R.color.white)))
+//        luckyItems?.add(LuckyItem(" exciting offers", ContextCompat.getColor(applicationContext, android.R.color.darker_gray)))
+//        luckyItems?.add(LuckyItem("", ContextCompat.getColor(applicationContext, android.R.color.white)))
         
         luckyWheelView?.setData(luckyItems)
         luckyWheelView?.setTouchEnabled(false)
