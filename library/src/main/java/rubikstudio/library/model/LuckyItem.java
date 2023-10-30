@@ -15,4 +15,9 @@ public class LuckyItem {
         this.color = color;
         this.secondaryText = secondaryText;
     }
+
+    public LuckyItem(int icon, int color){
+        this.icon = icon;
+        this.color = color;
+    }
 }

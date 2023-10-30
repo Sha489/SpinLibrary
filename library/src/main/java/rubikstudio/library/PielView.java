@@ -8,8 +8,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PathMeasure;
+import android.graphics.PointF;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
@@ -18,14 +23,12 @@ import android.os.Build;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
-import android.widget.Toast;
 
 import java.util.List;
 import java.util.Random;
@@ -47,7 +50,9 @@ public class PielView extends View {
     private Paint mBackgroundPaint;
     private TextPaint mTextPaint;
 
-    private float mStartAngle = 0;
+    private int[] arrowAngle = {0,270,90,160,180,200,210,220,230,235,240};
+    private float[] imageSize = {0,8,6,4,3,3,2.5f,2.5f,2};
+    private float mStartAngle = 90;
     private int mCenter;
     private int mPadding;
     private int mTopTextPadding;
@@ -102,8 +107,8 @@ public class PielView extends View {
         if (textColor != 0) mTextPaint.setColor(textColor);
         mTextPaint.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 14,
                 getResources().getDisplayMetrics()));
-
-        mRange = new RectF(mPadding, mPadding, mPadding + mRadius, mPadding + mRadius);
+        //decreased size of the wheel
+        mRange = new RectF(mPadding+60, mPadding+60, mPadding + mRadius-60, mPadding + mRadius-60);
     }
 
     public int getLuckyItemListSize() {
@@ -190,10 +195,41 @@ public class PielView extends View {
             }
 
             if (borderColor != 0 && mEdgeWidth > 0) {
+                //outer circle
+                RectF mRangeOuter = new RectF(mPadding+10, mPadding+10, mPadding + mRadius -10, mPadding + mRadius-10);
+
                 mArcPaint.setStyle(Paint.Style.STROKE);
-                mArcPaint.setColor(borderColor);
-                mArcPaint.setStrokeWidth(mEdgeWidth);
-                canvas.drawArc(mRange, tmpAngle, sweepAngle, true, mArcPaint);
+                mArcPaint.setStrokeWidth(5);
+                mArcPaint.setColor(mLuckyItemList.get(i).color);
+                //mArcPaint.setStrokeWidth(mEdgeWidth);
+                mArcPaint.setStrokeCap(Paint.Cap.BUTT);
+                canvas.drawArc(mRangeOuter,  tmpAngle, sweepAngle,false, mArcPaint);
+
+                //drawing arrows in the end of curve
+                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.arrow_icon);
+                //for finding the start and point
+                final Path mPath = new Path();
+                mPath.addArc(mRangeOuter, tmpAngle, sweepAngle);
+                PathMeasure pm = new PathMeasure(mPath, false);
+                float[] xyCoordinate = { mPadding, mPadding};
+                float pathLength = pm.getLength()-8;
+                pm.getPosTan(pathLength, xyCoordinate, null);//"0 for starting point"
+                PointF point = new PointF(xyCoordinate[0], xyCoordinate[1]);
+                RectF imageBit;
+                //adjusting the size of arrow because when icons are rotated to match the angles size is getting reduced
+                if((tmpAngle+sweepAngle) % 90 < 30 || (tmpAngle+sweepAngle) % 90 > 60) {
+                    imageBit = new RectF(point.x-17,point.y-17,point.x+18,point.y+18);
+                }else {
+                    imageBit = new RectF(point.x - 22, point.y - 22, point.x + 25, point.y + 25);
+                }
+                Matrix matrix = new Matrix();
+                Paint bitmapPaint = new Paint();
+                bitmapPaint.setColorFilter(new PorterDuffColorFilter(mLuckyItemList.get(i).color, PorterDuff.Mode.SRC_IN));
+                //rotating arrow icon
+                matrix.postRotate(tmpAngle-arrowAngle[mLuckyItemList.size()]);
+                Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap,0,0,bitmap.getWidth(),bitmap.getHeight(),matrix,true);
+                canvas.drawBitmap(rotatedBitmap,null,imageBit,bitmapPaint);
+
             }
 
             int sliceColor = mLuckyItemList.get(i).color != 0 ? mLuckyItemList.get(i).color : defaultBackgroundColor;
@@ -251,8 +287,10 @@ public class PielView extends View {
         int x = (int) (mCenter + mRadius / 2 / 2 * Math.cos(angle));
         int y = (int) (mCenter + mRadius / 2 / 2 * Math.sin(angle));
 
-        Rect rect = new Rect(x - imgWidth / 2, y - imgWidth / 2,
-                x + imgWidth / 2, y + imgWidth / 2);
+        //adjusting the size of icon based on number of offers
+        float size = imageSize[mLuckyItemList.size()];
+        Rect rect = new Rect((int) (x - imgWidth / size),(int) (y - imgWidth / size),
+                (int) (x + imgWidth / size),(int) (y + imgWidth / size));
         canvas.drawBitmap(bitmap, null, rect, null);
     }
 
@@ -360,7 +398,7 @@ public class PielView extends View {
             String remainder = mStr.substring(17, mStr.length());
             canvas.drawText(remainder, x, y, mTextPaint);
         } else {
-            canvas.drawText(mStr, x, y, mTextPaint);
+            canvas.drawText(mStr, x, y+10, mTextPaint);
         }
 //        for (String line: mStr.split(" ", 2)) {
 //            canvas.drawText(line, x, y, mTextPaint);
@@ -448,7 +486,7 @@ public class PielView extends View {
         // if you still need to reach the same outcome of a positive degrees rotation with the number of rounds reversed.
         if (rotationAssess < 0) mRoundOfNumber++;
 
-        float targetAngle = ((360f * mRoundOfNumber * rotationAssess) + 450f - getAngleOfIndexTarget(index) - (360f / mLuckyItemList.size()) / 2);
+        float targetAngle = ((360f * mRoundOfNumber * rotationAssess) + 90 - getAngleOfIndexTarget(index) - (360f / mLuckyItemList.size()) / 2);
         animate()
                 .setInterpolator(new DecelerateInterpolator())
                 .setDuration(mRoundOfNumber * 1000 + 900L)
