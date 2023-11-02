@@ -26,6 +26,8 @@ class MainActivity : AppCompatActivity() {
         luckyItems?.add(LuckyItem( R.drawable.apple,ContextCompat.getColor(applicationContext, R.color.yellow)))
         luckyItems?.add(LuckyItem( R.drawable.seven,ContextCompat.getColor(applicationContext, R.color.orange)))
         luckyItems?.add(LuckyItem( R.drawable.lemon,ContextCompat.getColor(applicationContext, R.color.green)))
+        luckyItems?.add(LuckyItem( R.drawable.seven,ContextCompat.getColor(applicationContext, R.color.orange)))
+        luckyItems?.add(LuckyItem( R.drawable.lemon,ContextCompat.getColor(applicationContext, R.color.green)))
 /*        luckyItems?.add(LuckyItem(" Earn 1000 points and win", ContextCompat.getColor(applicationContext, android.R.color.darker_gray)))
         luckyItems?.add(LuckyItem("", ContextCompat.getColor(applicationContext, android.R.color.white)))
         luckyItems?.add(LuckyItem(" Spin wheel and win", ContextCompat.getColor(applicationContext, android.R.color.darker_gray)))
@@ -44,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         luckyWheelView?.setBorderWidth(5)
         luckyWheelView?.setBorderColor(ContextCompat.getColor(applicationContext, R.color.white))
         luckyWheelView?.setLuckyWheelBackgrouldColor(ContextCompat.getColor(applicationContext, R.color.black))
-        luckyWheelView?.startLuckyWheelWithTargetIndex(2)
+//        luckyWheelView?.startLuckyWheelWithTargetIndex(2)
 
 
     }
