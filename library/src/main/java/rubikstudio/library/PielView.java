@@ -50,7 +50,7 @@ public class PielView extends View {
     private Paint mBackgroundPaint;
     private TextPaint mTextPaint;
 
-    private int[] arrowAngle = {0,270,90,160,180,200,210,220,230,235,240};
+    private int[] arrowAngle = {0,270,90,160,180,200,210,225,230,235,240};
     private float[] imageSize = {0,8,6,4,3,3,2.5f,2.5f,2};
     private float mStartAngle = 90;
     private int mCenter;
@@ -61,7 +61,6 @@ public class PielView extends View {
     private int mRoundOfNumber = 4;
     private int mEdgeWidth = -1;
     private boolean isRunning = false;
-
     private int borderColor = 0;
     private int defaultBackgroundColor = 0;
     private Drawable drawableCenterImage;
@@ -102,6 +101,8 @@ public class PielView extends View {
 
         mTextPaint = new TextPaint();
         mTextPaint.setAntiAlias(true);
+
+
 
 
         if (textColor != 0) mTextPaint.setColor(textColor);
@@ -178,9 +179,7 @@ public class PielView extends View {
         if (mLuckyItemList == null) {
             return;
         }
-
-        drawBackgroundColor(canvas, defaultBackgroundColor);
-
+        //drawBackgroundColor(canvas, defaultBackgroundColor);
         init();
 
         float tmpAngle = mStartAngle;
@@ -199,38 +198,41 @@ public class PielView extends View {
                 RectF mRangeOuter = new RectF(mPadding+10, mPadding+10, mPadding + mRadius -10, mPadding + mRadius-10);
 
                 mArcPaint.setStyle(Paint.Style.STROKE);
-                mArcPaint.setStrokeWidth(5);
+                mArcPaint.setStrokeWidth(2);
                 mArcPaint.setColor(mLuckyItemList.get(i).color);
                 //mArcPaint.setStrokeWidth(mEdgeWidth);
                 mArcPaint.setStrokeCap(Paint.Cap.BUTT);
                 canvas.drawArc(mRangeOuter,  tmpAngle, sweepAngle,false, mArcPaint);
 
-                //drawing arrows in the end of curve
-                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.arrow_icon);
+
                 //for finding the start and point
                 final Path mPath = new Path();
                 mPath.addArc(mRangeOuter, tmpAngle, sweepAngle);
                 PathMeasure pm = new PathMeasure(mPath, false);
                 float[] xyCoordinate = { mPadding, mPadding};
-                float pathLength = pm.getLength()-8;
+                float pathLength = pm.getLength()-1;
                 pm.getPosTan(pathLength, xyCoordinate, null);//"0 for starting point"
                 PointF point = new PointF(xyCoordinate[0], xyCoordinate[1]);
-                RectF imageBit;
-                //adjusting the size of arrow because when icons are rotated to match the angles size is getting reduced
-                if((tmpAngle+sweepAngle) % 90 < 30 || (tmpAngle+sweepAngle) % 90 > 60) {
-                    imageBit = new RectF(point.x-17,point.y-17,point.x+18,point.y+18);
-                }else {
-                    imageBit = new RectF(point.x - 22, point.y - 22, point.x + 25, point.y + 25);
-                }
-                Matrix matrix = new Matrix();
-                Paint bitmapPaint = new Paint();
-                bitmapPaint.setColorFilter(new PorterDuffColorFilter(mLuckyItemList.get(i).color, PorterDuff.Mode.SRC_IN));
-                //rotating arrow icon
-                matrix.postRotate(tmpAngle-arrowAngle[mLuckyItemList.size()]);
-                Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap,0,0,bitmap.getWidth(),bitmap.getHeight(),matrix,true);
-                canvas.drawBitmap(rotatedBitmap,null,imageBit,bitmapPaint);
 
+                Path arrowPath = new Path();
+                arrowPath.moveTo(point.x,point.y ); //move to the center of first circle
+                arrowPath.lineTo(point.x-20, point.y-20);//draw the first arrowhead line to the left
+                arrowPath.moveTo(point.x,point.y);//move back to the center
+                arrowPath.lineTo(point.x+20, point.y-20);//draw the next arrowhead line to the right
+
+                Paint arrowPaint = new Paint();
+                arrowPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+                arrowPaint.setStrokeWidth(2);
+                arrowPaint.setColor(mLuckyItemList.get(i).color);
+
+                Matrix matrix = new Matrix();
+                //rotating arrow icon
+                matrix.setRotate(tmpAngle-arrowAngle[mLuckyItemList.size()]-90,point.x,point.y);
+                arrowPath.transform(matrix);
+                //draw the path
+                canvas.drawPath(arrowPath,arrowPaint);
             }
+
 
             int sliceColor = mLuckyItemList.get(i).color != 0 ? mLuckyItemList.get(i).color : defaultBackgroundColor;
 
