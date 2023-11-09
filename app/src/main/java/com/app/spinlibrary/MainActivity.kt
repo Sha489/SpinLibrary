@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     fun setData() {
         luckyItems = ArrayList<LuckyItem>()
-        luckyItems?.add(LuckyItem(R.drawable.seven,ContextCompat.getColor(applicationContext, R.color.yellow)))
+   /*     luckyItems?.add(LuckyItem(R.drawable.seven,ContextCompat.getColor(applicationContext, R.color.yellow)))
         luckyItems?.add(LuckyItem( R.drawable.apple,ContextCompat.getColor(applicationContext, R.color.orange)))
         luckyItems?.add(LuckyItem( R.drawable.bar,ContextCompat.getColor(applicationContext, R.color.green)))
         luckyItems?.add(LuckyItem( R.drawable.apple,ContextCompat.getColor(applicationContext, R.color.yellow)))
@@ -28,6 +28,50 @@ class MainActivity : AppCompatActivity() {
         luckyItems?.add(LuckyItem( R.drawable.lemon,ContextCompat.getColor(applicationContext, R.color.green)))
         luckyItems?.add(LuckyItem( R.drawable.seven,ContextCompat.getColor(applicationContext, R.color.orange)))
         luckyItems?.add(LuckyItem( R.drawable.lemon,ContextCompat.getColor(applicationContext, R.color.green)))
+
+    */
+
+
+        luckyItems!!.add(
+            LuckyItem(
+                "Play Station",
+                ContextCompat.getColor(applicationContext, R.color.green)
+            )
+        )
+        luckyItems!!.add(
+            LuckyItem(
+                "65% Off on McAfee",
+                ContextCompat.getColor(applicationContext, R.color.yellow)
+            )
+        )
+        luckyItems!!.add(
+            LuckyItem(
+                "Try Again",
+                ContextCompat.getColor(applicationContext, R.color.orange)
+            )
+        )
+        luckyItems!!.add(
+            LuckyItem(
+                "15% Off on Amazon",
+                ContextCompat.getColor(applicationContext, R.color.green)
+            )
+        )
+        luckyItems!!.add(
+            LuckyItem(
+                "Microsoft Office",
+                ContextCompat.getColor(applicationContext, R.color.yellow)
+            )
+        )
+        luckyItems!!.add(
+            LuckyItem(
+                "Try again",
+                ContextCompat.getColor(applicationContext, R.color.orange)
+            )
+        )
+
+
+
+
 /*        luckyItems?.add(LuckyItem(" Earn 1000 points and win", ContextCompat.getColor(applicationContext, android.R.color.darker_gray)))
         luckyItems?.add(LuckyItem("", ContextCompat.getColor(applicationContext, android.R.color.white)))
         luckyItems?.add(LuckyItem(" Spin wheel and win", ContextCompat.getColor(applicationContext, android.R.color.darker_gray)))

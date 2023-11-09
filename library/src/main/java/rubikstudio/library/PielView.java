@@ -392,12 +392,12 @@ public class PielView extends View {
 
         canvas.rotate(initFloat + (arraySize / 18f), x, y);
 
-        if(mStr.length() > 17) {
-            String kept = mStr.substring(0, 17);
+        if(mStr.length() > 12) {
+            String kept = mStr.substring(0, 12);
             canvas.drawText(kept, x, + y, mTextPaint);
             y += mTextPaint.descent() - mTextPaint.ascent();
 
-            String remainder = mStr.substring(17, mStr.length());
+            String remainder = mStr.substring(12, mStr.length());
             canvas.drawText(remainder, x, y, mTextPaint);
         } else {
             canvas.drawText(mStr, x, y+10, mTextPaint);
