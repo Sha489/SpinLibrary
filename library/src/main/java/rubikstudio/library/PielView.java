@@ -201,7 +201,7 @@ public class PielView extends View {
             if (!TextUtils.isEmpty(mLuckyItemList.get(i).topText))
                 drawTopText(canvas, tmpAngle, sweepAngle, mLuckyItemList.get(i).topText, sliceColor);
             if (!TextUtils.isEmpty(mLuckyItemList.get(i).secondaryText))
-                drawSecondaryText(canvas, tmpAngle, mLuckyItemList.get(i).secondaryText, sliceColor);
+                drawSecondaryText(canvas, tmpAngle, mLuckyItemList.get(i).secondaryText, sliceColor,i);
 
             if (mLuckyItemList.get(i).icon != 0)
                 drawImage(canvas, tmpAngle, BitmapFactory.decodeResource(getResources(),
@@ -302,7 +302,7 @@ public class PielView extends View {
      * @param mStr
      * @param backgroundColor
      */
-    private void drawSecondaryText(Canvas canvas, float tmpAngle, String mStr, int backgroundColor) {
+    private void drawSecondaryText(Canvas canvas, float tmpAngle, String mStr, int backgroundColor,int i) {
         canvas.save();
         int arraySize = mLuckyItemList.size();
 
@@ -312,7 +312,11 @@ public class PielView extends View {
         if (backgroundColor == -1) {
             mTextPaint.setColor(Color.parseColor("#000000"));
         } else {
-            mTextPaint.setColor(Color.parseColor("#FFDE88"));
+            if(i%2 == 0){
+                mTextPaint.setColor(Color.parseColor("#e0aa3d"));
+            }else {
+                mTextPaint.setColor(Color.parseColor("#90090B"));
+            }
         }
 
 //        DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -324,13 +328,13 @@ public class PielView extends View {
         mTextPaint.setTypeface(typeface);
 
         if(getHeight() <= 320 && getWidth() <= 320){
-            mTextPaint.setTextSize(8);
+            mTextPaint.setTextSize(35);
         } else if(getHeight() > 320 && getHeight() <= 650 && getWidth() > 320 && getWidth() <=650) {
-            mTextPaint.setTextSize(15);
+            mTextPaint.setTextSize(35);
         } else if(getHeight() > 650 && getHeight() <= 1000 && getWidth() > 650 && getWidth() <= 1000){
-            mTextPaint.setTextSize(30);
+            mTextPaint.setTextSize(35);
         } else {
-            mTextPaint.setTextSize(30);
+            mTextPaint.setTextSize(35);
         }
 
         mTextPaint.setTextAlign(Paint.Align.CENTER);
@@ -352,16 +356,9 @@ public class PielView extends View {
 
         canvas.rotate(initFloat + (arraySize / 18f), x, y);
 
-        if(mStr.length() > 17) {
-            String kept = mStr.substring(0, 17);
-            canvas.drawText(kept, x, + y, mTextPaint);
-            y += mTextPaint.descent() - mTextPaint.ascent();
 
-            String remainder = mStr.substring(17, mStr.length());
-            canvas.drawText(remainder, x, y, mTextPaint);
-        } else {
-            canvas.drawText(mStr, x, y, mTextPaint);
-        }
+        canvas.drawText(mStr, x+30, y+10, mTextPaint);
+
 //        for (String line: mStr.split(" ", 2)) {
 //            canvas.drawText(line, x, y, mTextPaint);
 //
