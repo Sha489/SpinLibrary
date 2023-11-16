@@ -244,6 +244,9 @@ public class PielView extends View {
             if (mLuckyItemList.get(i).icon != 0)
                 drawImage(canvas, tmpAngle, BitmapFactory.decodeResource(getResources(),
                         mLuckyItemList.get(i).icon));
+            if(mLuckyItemList.get(i).imageBitmap != null){
+                drawImage(canvas, tmpAngle, mLuckyItemList.get(i).imageBitmap);
+            }
             tmpAngle += sweepAngle;
         }
 
