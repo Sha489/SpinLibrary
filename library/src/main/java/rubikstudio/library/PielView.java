@@ -8,10 +8,14 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.RadialGradient;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Shader;
+import android.graphics.SweepGradient;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -68,8 +72,7 @@ public class PielView extends View {
     double fingerRotation;
     long downPressTime, upPressTime;
     double newRotationStore[] = new double[3];
-
-
+    private float[] imageSize = {0,8,6,4,3,3,2f,2.5f,1.8f,1.5f,1.5f};
     private List<LuckyItem> mLuckyItemList;
 
     private PieRotateListener mPieRotateListener;
@@ -174,7 +177,7 @@ public class PielView extends View {
             return;
         }
 
-        drawBackgroundColor(canvas, defaultBackgroundColor);
+        //drawBackgroundColor(canvas, defaultBackgroundColor);
 
         init();
 
@@ -185,7 +188,14 @@ public class PielView extends View {
 
             if (mLuckyItemList.get(i).color != 0) {
                 mArcPaint.setStyle(Paint.Style.FILL);
+                mArcPaint.setShader(null);
                 mArcPaint.setColor(mLuckyItemList.get(i).color);
+                canvas.drawArc(mRange, tmpAngle, sweepAngle, true, mArcPaint);
+            } else if(mLuckyItemList.get(i).firstGradient != 0 && mLuckyItemList.get(i).secondGradient != 0){
+                mArcPaint.setStyle(Paint.Style.FILL);
+                int[] clr = { mLuckyItemList.get(i).firstGradient, mLuckyItemList.get(i).secondGradient};
+                float[] pos = {0,0.4f};
+                mArcPaint.setShader(new RadialGradient(mRange.centerX(),mRange.centerY(),mRadius,clr,pos, Shader.TileMode.MIRROR));
                 canvas.drawArc(mRange, tmpAngle, sweepAngle, true, mArcPaint);
             }
 
@@ -248,11 +258,12 @@ public class PielView extends View {
 
         float angle = (float) ((tmpAngle + 360f / mLuckyItemList.size() / 2) * Math.PI / 180);
 
-        int x = (int) (mCenter + mRadius / 2 / 2 * Math.cos(angle));
-        int y = (int) (mCenter + mRadius / 2 / 2 * Math.sin(angle));
+        int x = (int) (mCenter + mRadius / 2 /1.7* Math.cos(angle));
+        int y = (int) (mCenter + mRadius / 2 /1.7 * Math.sin(angle));
 
-        Rect rect = new Rect(x - imgWidth / 2, y - imgWidth / 2,
-                x + imgWidth / 2, y + imgWidth / 2);
+        float size = imageSize[mLuckyItemList.size()];
+        Rect rect = new Rect((int) (x - imgWidth / size),(int) (y - imgWidth / size),
+                (int) (x + imgWidth / size),(int) (y + imgWidth / size));
         canvas.drawBitmap(bitmap, null, rect, null);
     }
 
@@ -392,7 +403,7 @@ public class PielView extends View {
 
     public void rotateTo(final int index) {
         Random rand = new Random();
-        rotateTo(index, 0, true);
+        rotateTo(index, SpinRotation.COUNTERCLOCKWISE, true);
     }
 
     /**
@@ -448,7 +459,7 @@ public class PielView extends View {
         // if you still need to reach the same outcome of a positive degrees rotation with the number of rounds reversed.
         if (rotationAssess < 0) mRoundOfNumber++;
 
-        float targetAngle = ((360f * mRoundOfNumber * rotationAssess) + 450f - getAngleOfIndexTarget(index) - (360f / mLuckyItemList.size()) / 2);
+        float targetAngle = ((360f * mRoundOfNumber * rotationAssess) + 270f - getAngleOfIndexTarget(index) - (360f / mLuckyItemList.size()) / 2);
         animate()
                 .setInterpolator(new DecelerateInterpolator())
                 .setDuration(mRoundOfNumber * 1000 + 900L)

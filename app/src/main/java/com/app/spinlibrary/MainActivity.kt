@@ -21,25 +21,27 @@ class MainActivity : AppCompatActivity() {
     fun setData() {
         luckyItems = ArrayList<LuckyItem>()
 
-        luckyItems?.add(LuckyItem(" Earn 1000 points and win", ContextCompat.getColor(applicationContext, android.R.color.darker_gray)))
-        luckyItems?.add(LuckyItem("", ContextCompat.getColor(applicationContext, android.R.color.white)))
-        luckyItems?.add(LuckyItem(" Spin wheel and win", ContextCompat.getColor(applicationContext, android.R.color.darker_gray)))
-        luckyItems?.add(LuckyItem("", ContextCompat.getColor(applicationContext, android.R.color.white)))
-        luckyItems?.add(LuckyItem(" win offers", ContextCompat.getColor(applicationContext, android.R.color.darker_gray)))
-        luckyItems?.add(LuckyItem("", ContextCompat.getColor(applicationContext, android.R.color.white)))
-        luckyItems?.add(LuckyItem(" exciting offers", ContextCompat.getColor(applicationContext, android.R.color.darker_gray)))
-        luckyItems?.add(LuckyItem("", ContextCompat.getColor(applicationContext, android.R.color.white)))
-        luckyItems?.add(LuckyItem(" exciting offers", ContextCompat.getColor(applicationContext, android.R.color.darker_gray)))
-        luckyItems?.add(LuckyItem("", ContextCompat.getColor(applicationContext, android.R.color.white)))
+        luckyItems?.add(LuckyItem(R.drawable.reward_icon,ContextCompat.getColor(applicationContext, R.color.light_orange), ContextCompat.getColor(applicationContext, R.color.dark_orange)))
+        luckyItems?.add(LuckyItem("1", ContextCompat.getColor(applicationContext, R.color.purple)))
+        luckyItems?.add(LuckyItem(R.drawable.reward_icon, ContextCompat.getColor(applicationContext, R.color.light_orange), ContextCompat.getColor(applicationContext, R.color.dark_orange)))
+        luckyItems?.add(LuckyItem("3",ContextCompat.getColor(applicationContext, R.color.purple)))
+        luckyItems?.add(LuckyItem(R.drawable.reward_icon,ContextCompat.getColor(applicationContext, R.color.light_orange), ContextCompat.getColor(applicationContext, R.color.dark_orange)))
+        luckyItems?.add(LuckyItem("5", ContextCompat.getColor(applicationContext, R.color.purple)))
+        luckyItems?.add(LuckyItem(R.drawable.reward_icon,ContextCompat.getColor(applicationContext, R.color.light_orange), ContextCompat.getColor(applicationContext, R.color.dark_orange)))
+        luckyItems?.add(LuckyItem("", ContextCompat.getColor(applicationContext, R.color.purple)))
+        luckyItems?.add(LuckyItem(R.drawable.reward_icon,ContextCompat.getColor(applicationContext, R.color.light_orange), ContextCompat.getColor(applicationContext, R.color.dark_orange)))
+        luckyItems?.add(LuckyItem("", ContextCompat.getColor(applicationContext, R.color.purple)))
+//        luckyItems?.add(LuckyItem(" exciting offers", ContextCompat.getColor(applicationContext, android.R.color.darker_gray)))
+//        luckyItems?.add(LuckyItem("", ContextCompat.getColor(applicationContext, android.R.color.white)))
 //        luckyItems?.add(LuckyItem(" exciting offers", ContextCompat.getColor(applicationContext, android.R.color.darker_gray)))
 //        luckyItems?.add(LuckyItem("", ContextCompat.getColor(applicationContext, android.R.color.white)))
         
         luckyWheelView?.setData(luckyItems)
         luckyWheelView?.setTouchEnabled(false)
-        luckyWheelView?.setBorderWidth(5)
-        luckyWheelView?.setBorderColor(ContextCompat.getColor(applicationContext, R.color.white))
-        luckyWheelView?.setLuckyWheelBackgrouldColor(ContextCompat.getColor(applicationContext, R.color.black))
-        luckyWheelView?.startLuckyWheelWithTargetIndex(2)
+        luckyWheelView?.setBorderWidth(0)
+        //luckyWheelView?.setBorderColor(ContextCompat.getColor(applicationContext, R.color.white))
+
+       // luckyWheelView?.startLuckyWheelWithTargetIndex(7)
 
 
     }
