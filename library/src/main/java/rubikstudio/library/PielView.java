@@ -53,6 +53,9 @@ public class PielView extends View {
     private int[] arrowAngle = {0,270,90,160,180,200,210,225,230,235,240};
     private float[] imageSize = {0,8,6,4,3,3,2.5f,2.5f,2};
     private float mStartAngle = 90;
+
+    private float mStopAngle = 90;
+
     private int mCenter;
     private int mPadding;
     private int mTopTextPadding;
@@ -156,6 +159,10 @@ public class PielView extends View {
     public void setBorderWidth(int width) {
         mEdgeWidth = width;
         invalidate();
+    }
+
+    public void setStopAngle(Float angle){
+        mStopAngle = angle;
     }
 
     public void setPieTextColor(int color) {
@@ -491,7 +498,7 @@ public class PielView extends View {
         // if you still need to reach the same outcome of a positive degrees rotation with the number of rounds reversed.
         if (rotationAssess < 0) mRoundOfNumber++;
 
-        float targetAngle = ((360f * mRoundOfNumber * rotationAssess) + 90 - getAngleOfIndexTarget(index) - (360f / mLuckyItemList.size()) / 2);
+        float targetAngle = ((360f * mRoundOfNumber * rotationAssess) + mStopAngle - getAngleOfIndexTarget(index) - (360f / mLuckyItemList.size()) / 2);
         animate()
                 .setInterpolator(new DecelerateInterpolator())
                 .setDuration(mRoundOfNumber * 1000 + 900L)

@@ -88,9 +88,10 @@ class MainActivity : AppCompatActivity() {
         luckyWheelView?.setData(luckyItems)
         luckyWheelView?.setTouchEnabled(false)
         luckyWheelView?.setBorderWidth(1)
+        luckyWheelView?.setStopAngle(270f)
         luckyWheelView?.setBorderColor(ContextCompat.getColor(applicationContext, R.color.white))
         luckyWheelView?.setLuckyWheelBackgrouldColor(ContextCompat.getColor(applicationContext, R.color.black))
-//        luckyWheelView?.startLuckyWheelWithTargetIndex(2)
+        luckyWheelView?.startLuckyWheelWithTargetIndex(1)
 
 
     }

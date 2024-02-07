@@ -160,6 +160,10 @@ public class LuckyWheelView extends RelativeLayout implements PielView.PieRotate
         pielView.setPieTextColor(color);
     }
 
+    public void setStopAngle(float angle) {
+        pielView.setStopAngle(angle);
+    }
+
     /**
      * @param data
      */
