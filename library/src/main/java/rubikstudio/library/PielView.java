@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.TimeInterpolator;
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -245,7 +246,7 @@ public class PielView extends View {
                 mArcPaint.setColor(mLuckyItemList.get(i).secondGradient);
                 //mArcPaint.setStrokeWidth(mEdgeWidth);
                 mArcPaint.setStrokeCap(Paint.Cap.BUTT);
-                canvas.drawArc(mRangeOuter,  tmpAngle+(180f/getLuckyItemListSize()), sweepAngle+(180f/getLuckyItemListSize()),false, mArcPaint);
+                canvas.drawArc(mRangeOuter,  tmpAngle+(180f/getLuckyItemListSize()), i == getLuckyItemListSize()-1 ? sweepAngle : sweepAngle+(180f/getLuckyItemListSize()),false, mArcPaint);
 
 
                 //for finding the start and point
@@ -407,7 +408,9 @@ public class PielView extends View {
 //        int height = displayMetrics.heightPixels;
 //        int width = displayMetrics.widthPixels;
 
-        Typeface typeface = Typeface.create(Typeface.SERIF, Typeface.BOLD);
+        //Typeface typeface = Typeface.create(Typeface.SERIF, Typeface.BOLD);
+
+        Typeface typeface = Typeface.createFromAsset(getContext().getAssets(),"fonts/ModernEra_Bold.otf");
         mTextPaint.setTypeface(typeface);
 
         if(getHeight() <= 320 && getWidth() <= 320){
@@ -415,20 +418,20 @@ public class PielView extends View {
         } else if(getHeight() > 320 && getHeight() <= 650 && getWidth() > 320 && getWidth() <=650) {
             mTextPaint.setTextSize(15);
         } else if(getHeight() > 650 && getHeight() <= 1000 && getWidth() > 650 && getWidth() <= 1000){
-            mTextPaint.setTextSize(27);
+            mTextPaint.setTextSize(29);
         } else {
-            mTextPaint.setTextSize(27);
+            mTextPaint.setTextSize(29);
         }
 
-        mTextPaint.setTextAlign(Paint.Align.CENTER);
+        mTextPaint.setTextAlign(Paint.Align.LEFT);
 
         float textWidth = mTextPaint.measureText(mStr);
 
         float initFloat = (tmpAngle + 360f / arraySize / 2);
         float angle = (float) (initFloat * Math.PI / 180);
 
-        int x = (int) (mCenter + mRadius / 2 / 2 * Math.cos(angle));
-        int y = (int) (mCenter + mRadius / 2 / 2 * Math.sin(angle));
+        int x = (int) (mCenter + mRadius / 2 / 4.5 * Math.cos(angle));
+        int y = (int) (mCenter + mRadius / 2 / 4.5 * Math.sin(angle));
 
         RectF rect = new RectF(x , y,
                 x , y);
@@ -439,12 +442,12 @@ public class PielView extends View {
 
         canvas.rotate(initFloat + (arraySize / 18f), x, y);
 
-        if(mStr.length() > 13) {
-            String kept = mStr.substring(0, 13);
+        if(mStr.length() > 15) {
+            String kept = mStr.substring(0, 15);
             canvas.drawText(kept, x, + y, mTextPaint);
             y += mTextPaint.descent() - mTextPaint.ascent();
 
-            String remainder = mStr.substring(13, mStr.length());
+            String remainder = mStr.substring(15, mStr.length());
             canvas.drawText(remainder, x, y, mTextPaint);
         } else {
             canvas.drawText(mStr, x, y+10, mTextPaint);
