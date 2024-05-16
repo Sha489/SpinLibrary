@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.MaskFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -15,14 +16,18 @@ import android.graphics.PathMeasure;
 import android.graphics.PointF;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RadialGradient;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Shader;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
@@ -52,9 +57,9 @@ public class PielView extends View {
 
     private int[] arrowAngle = {0,270,90,160,180,200,210,225,230,235,240};
     private float[] imageSize = {0,8,6,4,3,3,2.5f,2.5f,2};
-    private float mStartAngle = 90;
+    private float mStartAngle = 240;
 
-    private float mStopAngle = 90;
+    private float mStopAngle = 30;
 
     private int mCenter;
     private int mPadding;
@@ -75,7 +80,6 @@ public class PielView extends View {
     double fingerRotation;
     long downPressTime, upPressTime;
     double newRotationStore[] = new double[3];
-
 
     private List<LuckyItem> mLuckyItemList;
 
@@ -196,25 +200,57 @@ public class PielView extends View {
 
             if (mLuckyItemList.get(i).color != 0) {
                 mArcPaint.setStyle(Paint.Style.FILL);
+                mArcPaint.setShader(null);
                 mArcPaint.setColor(mLuckyItemList.get(i).color);
+                canvas.drawArc(mRange, tmpAngle, sweepAngle, true, mArcPaint);
+            }else if(mLuckyItemList.get(i).firstGradient != 0 && mLuckyItemList.get(i).secondGradient != 0){
+                mArcPaint = new Paint();
+                mArcPaint.setAntiAlias(true);
+                mArcPaint.setDither(true);
+                mArcPaint.setStyle(Paint.Style.FILL);
+                int[] clr = { mLuckyItemList.get(i).firstGradient, mLuckyItemList.get(i).secondGradient};
+                float[] pos = {0,0.4f};
+                mArcPaint.setShader(new RadialGradient(mRange.centerX(),mRange.centerY(),mRadius,clr,pos, Shader.TileMode.MIRROR));
                 canvas.drawArc(mRange, tmpAngle, sweepAngle, true, mArcPaint);
             }
 
             if (borderColor != 0 && mEdgeWidth > 0) {
-                //outer circle
-                RectF mRangeOuter = new RectF(mPadding+10, mPadding+10, mPadding + mRadius -10, mPadding + mRadius-10);
+
+                //Inner shadow circle
+                RectF mRangeInner = new RectF(mPadding+88, mPadding+88, mPadding + mRadius -88, mPadding + mRadius-88);
 
                 mArcPaint.setStyle(Paint.Style.STROKE);
-                mArcPaint.setStrokeWidth(2);
-                mArcPaint.setColor(mLuckyItemList.get(i).color);
+                mArcPaint.setShader(null);
+                mArcPaint.setStrokeWidth(30);
+                mArcPaint.setColor(Color.argb(51,255,255,255));
                 //mArcPaint.setStrokeWidth(mEdgeWidth);
                 mArcPaint.setStrokeCap(Paint.Cap.BUTT);
-                canvas.drawArc(mRangeOuter,  tmpAngle, sweepAngle,false, mArcPaint);
+                canvas.drawArc(mRangeInner,  tmpAngle, sweepAngle,true, mArcPaint);
+
+
+                RectF mRangeMid = new RectF(mPadding+65, mPadding+65, mPadding + mRadius -65, mPadding + mRadius-65);
+                mArcPaint.setStyle(Paint.Style.STROKE);
+                mArcPaint.setShader(null);
+                mArcPaint.setColor(Color.parseColor("#052035"));
+                mArcPaint.setStrokeWidth(mEdgeWidth);
+                canvas.drawArc(mRangeMid, tmpAngle, sweepAngle, true, mArcPaint);
+
+
+                //outer circle
+                RectF mRangeOuter = new RectF(mPadding+30, mPadding+30, mPadding + mRadius -30, mPadding + mRadius-30);
+
+                mArcPaint.setStyle(Paint.Style.STROKE);
+                mArcPaint.setShader(null);
+                mArcPaint.setStrokeWidth(2);
+                mArcPaint.setColor(mLuckyItemList.get(i).secondGradient);
+                //mArcPaint.setStrokeWidth(mEdgeWidth);
+                mArcPaint.setStrokeCap(Paint.Cap.BUTT);
+                canvas.drawArc(mRangeOuter,  tmpAngle+(180f/getLuckyItemListSize()), sweepAngle+(180f/getLuckyItemListSize()),false, mArcPaint);
 
 
                 //for finding the start and point
                 final Path mPath = new Path();
-                mPath.addArc(mRangeOuter, tmpAngle, sweepAngle);
+                mPath.addArc(mRangeOuter, tmpAngle, sweepAngle+(180f/getLuckyItemListSize()));
                 PathMeasure pm = new PathMeasure(mPath, false);
                 float[] xyCoordinate = { mPadding, mPadding};
                 float pathLength = pm.getLength()-1;
@@ -230,16 +266,15 @@ public class PielView extends View {
                 Paint arrowPaint = new Paint();
                 arrowPaint.setStyle(Paint.Style.FILL_AND_STROKE);
                 arrowPaint.setStrokeWidth(2);
-                arrowPaint.setColor(mLuckyItemList.get(i).color);
+                arrowPaint.setColor(mLuckyItemList.get(i).secondGradient);
 
                 Matrix matrix = new Matrix();
                 //rotating arrow icon
-                matrix.setRotate(tmpAngle-arrowAngle[mLuckyItemList.size()]-90,point.x,point.y);
+                matrix.setRotate(tmpAngle-arrowAngle[mLuckyItemList.size()]-90+(180f/getLuckyItemListSize()),point.x,point.y);
                 arrowPath.transform(matrix);
                 //draw the path
                 canvas.drawPath(arrowPath,arrowPaint);
             }
-
 
             int sliceColor = mLuckyItemList.get(i).color != 0 ? mLuckyItemList.get(i).color : defaultBackgroundColor;
 
@@ -356,14 +391,16 @@ public class PielView extends View {
         canvas.save();
         int arraySize = mLuckyItemList.size();
 
-        if (textColor == 0)
-            mTextPaint.setColor(isColorDark(backgroundColor) ? 0xffffffff : 0xff000000);
+//        if (textColor == 0)
+//            mTextPaint.setColor(isColorDark(backgroundColor) ? 0xffffffff : 0xff000000);
+//
+//        if (backgroundColor == -1) {
+//            mTextPaint.setColor(Color.parseColor("#000000"));
+//        } else {
+//            mTextPaint.setColor(Color.parseColor("#212224"));
+//        }
 
-        if (backgroundColor == -1) {
-            mTextPaint.setColor(Color.parseColor("#000000"));
-        } else {
-            mTextPaint.setColor(Color.parseColor("#212224"));
-        }
+        mTextPaint.setColor(Color.parseColor("#FFFFFF"));
 
 //        DisplayMetrics displayMetrics = new DisplayMetrics();
 //        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -378,9 +415,9 @@ public class PielView extends View {
         } else if(getHeight() > 320 && getHeight() <= 650 && getWidth() > 320 && getWidth() <=650) {
             mTextPaint.setTextSize(15);
         } else if(getHeight() > 650 && getHeight() <= 1000 && getWidth() > 650 && getWidth() <= 1000){
-            mTextPaint.setTextSize(30);
+            mTextPaint.setTextSize(27);
         } else {
-            mTextPaint.setTextSize(30);
+            mTextPaint.setTextSize(27);
         }
 
         mTextPaint.setTextAlign(Paint.Align.CENTER);
@@ -393,8 +430,8 @@ public class PielView extends View {
         int x = (int) (mCenter + mRadius / 2 / 2 * Math.cos(angle));
         int y = (int) (mCenter + mRadius / 2 / 2 * Math.sin(angle));
 
-        RectF rect = new RectF(x + textWidth, y,
-                x - textWidth, y);
+        RectF rect = new RectF(x , y,
+                x , y);
 
         Path path = new Path();
         path.addRect(rect, Path.Direction.CW);
@@ -402,12 +439,12 @@ public class PielView extends View {
 
         canvas.rotate(initFloat + (arraySize / 18f), x, y);
 
-        if(mStr.length() > 12) {
-            String kept = mStr.substring(0, 12);
+        if(mStr.length() > 13) {
+            String kept = mStr.substring(0, 13);
             canvas.drawText(kept, x, + y, mTextPaint);
             y += mTextPaint.descent() - mTextPaint.ascent();
 
-            String remainder = mStr.substring(12, mStr.length());
+            String remainder = mStr.substring(13, mStr.length());
             canvas.drawText(remainder, x, y, mTextPaint);
         } else {
             canvas.drawText(mStr, x, y+10, mTextPaint);

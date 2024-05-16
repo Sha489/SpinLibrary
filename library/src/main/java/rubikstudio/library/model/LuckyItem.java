@@ -13,6 +13,8 @@ public class LuckyItem {
     public int icon;
     public int color;
     public Bitmap imageBitmap;
+    public int firstGradient;
+    public int secondGradient;
 
     public LuckyItem(String secondaryText, int color) {
         this.color = color;
@@ -27,5 +29,11 @@ public class LuckyItem {
     public LuckyItem(Bitmap imageBitmap, int color){
         this.imageBitmap = imageBitmap;
         this.color = color;
+    }
+
+    public LuckyItem(String secondaryText, int firstGradient, int secondGradient) {
+        this.secondaryText = secondaryText;
+        this.firstGradient = firstGradient;
+        this.secondGradient = secondGradient;
     }
 }

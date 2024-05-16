@@ -35,37 +35,43 @@ class MainActivity : AppCompatActivity() {
         luckyItems!!.add(
             LuckyItem(
                 "Play Station",
-                ContextCompat.getColor(applicationContext, R.color.green)
+                ContextCompat.getColor(applicationContext, R.color.green_light),
+                ContextCompat.getColor(applicationContext, R.color.green_dark)
             )
         )
         luckyItems!!.add(
             LuckyItem(
                 "65% Off on McAfee",
-                ContextCompat.getColor(applicationContext, R.color.yellow)
+                ContextCompat.getColor(applicationContext, R.color.grey_light),
+                ContextCompat.getColor(applicationContext, R.color.grey_dark)
             )
         )
         luckyItems!!.add(
             LuckyItem(
                 "Try Again",
-                ContextCompat.getColor(applicationContext, R.color.orange)
+                ContextCompat.getColor(applicationContext, R.color.green_light),
+                ContextCompat.getColor(applicationContext, R.color.green_dark)
+            )
+        )
+        luckyItems!!.add(
+            LuckyItem(
+                "خصم 15% على أمازون على",
+                ContextCompat.getColor(applicationContext, R.color.grey_light),
+                ContextCompat.getColor(applicationContext, R.color.grey_dark)
+            )
+        )
+        luckyItems!!.add(
+            LuckyItem(
+                "Try Again",
+                ContextCompat.getColor(applicationContext, R.color.green_light),
+                ContextCompat.getColor(applicationContext, R.color.green_dark)
             )
         )
         luckyItems!!.add(
             LuckyItem(
                 "15% Off on Amazon",
-                ContextCompat.getColor(applicationContext, R.color.green)
-            )
-        )
-        luckyItems!!.add(
-            LuckyItem(
-                "Microsoft Office",
-                ContextCompat.getColor(applicationContext, R.color.yellow)
-            )
-        )
-        luckyItems!!.add(
-            LuckyItem(
-                "Try again",
-                ContextCompat.getColor(applicationContext, R.color.orange)
+                ContextCompat.getColor(applicationContext, R.color.grey_light),
+                ContextCompat.getColor(applicationContext, R.color.grey_dark)
             )
         )
 
@@ -87,11 +93,10 @@ class MainActivity : AppCompatActivity() {
 */
         luckyWheelView?.setData(luckyItems)
         luckyWheelView?.setTouchEnabled(false)
-        luckyWheelView?.setBorderWidth(1)
-        luckyWheelView?.setStopAngle(270f)
-        luckyWheelView?.setBorderColor(ContextCompat.getColor(applicationContext, R.color.white))
+        luckyWheelView?.setBorderWidth(30)
+        luckyWheelView?.setBorderColor(ContextCompat.getColor(applicationContext, R.color.black))
         luckyWheelView?.setLuckyWheelBackgrouldColor(ContextCompat.getColor(applicationContext, R.color.black))
-        luckyWheelView?.startLuckyWheelWithTargetIndex(1)
+        luckyWheelView?.startLuckyWheelWithTargetIndex(5)
 
 
     }
