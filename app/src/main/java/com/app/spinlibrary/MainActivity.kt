@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         )
         luckyItems!!.add(
             LuckyItem(
-                "65% Off on McAf",
+                "65% Off on McAfe",
                 ContextCompat.getColor(applicationContext, R.color.grey_light),
                 ContextCompat.getColor(applicationContext, R.color.grey_dark)
             )
@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
 */
         luckyWheelView?.setData(luckyItems)
         luckyWheelView?.setTouchEnabled(false)
-        luckyWheelView?.setBorderWidth(30)
+        luckyWheelView?.setBorderWidth(35)
         luckyWheelView?.setBorderColor(ContextCompat.getColor(applicationContext, R.color.black))
         luckyWheelView?.setLuckyWheelBackgrouldColor(ContextCompat.getColor(applicationContext, R.color.black))
         //luckyWheelView?.startLuckyWheelWithTargetIndex(5)

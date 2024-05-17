@@ -117,7 +117,7 @@ public class PielView extends View {
         mTextPaint.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 14,
                 getResources().getDisplayMetrics()));
         //decreased size of the wheel
-        mRange = new RectF(mPadding+60, mPadding+60, mPadding + mRadius-60, mPadding + mRadius-60);
+        mRange = new RectF(mPadding+70, mPadding+70, mPadding + mRadius-70, mPadding + mRadius-70);
     }
 
     public int getLuckyItemListSize() {
@@ -194,7 +194,7 @@ public class PielView extends View {
         //drawBackgroundColor(canvas, defaultBackgroundColor);
         init();
 
-        float tmpAngle = mStartAngle;
+        float tmpAngle = 270f - (180f / mLuckyItemList.size());
         float sweepAngle = 360f / mLuckyItemList.size();
 
         for (int i = 0; i < mLuckyItemList.size(); i++) {
@@ -217,24 +217,31 @@ public class PielView extends View {
 
             if (borderColor != 0 && mEdgeWidth > 0) {
 
-                //Inner shadow circle
-                RectF mRangeInner = new RectF(mPadding+88, mPadding+88, mPadding + mRadius -88, mPadding + mRadius-88);
-
-                mArcPaint.setStyle(Paint.Style.STROKE);
-                mArcPaint.setShader(null);
-                mArcPaint.setStrokeWidth(30);
-                mArcPaint.setColor(Color.argb(51,255,255,255));
-                //mArcPaint.setStrokeWidth(mEdgeWidth);
-                mArcPaint.setStrokeCap(Paint.Cap.BUTT);
-                canvas.drawArc(mRangeInner,  tmpAngle, sweepAngle,true, mArcPaint);
-
-
-                RectF mRangeMid = new RectF(mPadding+65, mPadding+65, mPadding + mRadius -65, mPadding + mRadius-65);
+                RectF mRangeMid = new RectF(mPadding+75, mPadding+75, mPadding + mRadius -75, mPadding + mRadius-75);
                 mArcPaint.setStyle(Paint.Style.STROKE);
                 mArcPaint.setShader(null);
                 mArcPaint.setColor(Color.parseColor("#052035"));
                 mArcPaint.setStrokeWidth(mEdgeWidth);
                 canvas.drawArc(mRangeMid, tmpAngle, sweepAngle, true, mArcPaint);
+
+                RectF mRangeInner = new RectF(mPadding+80, mPadding+80, mPadding + mRadius -80, mPadding + mRadius-80);
+                mArcPaint.setStyle(Paint.Style.STROKE);
+                mArcPaint.setShader(null);
+                mArcPaint.setStrokeWidth(25);
+                mArcPaint.setColor(mLuckyItemList.get(i).secondGradient);
+                //mArcPaint.setStrokeWidth(mEdgeWidth);
+                mArcPaint.setStrokeCap(Paint.Cap.BUTT);
+                canvas.drawArc(mRangeInner,  tmpAngle+2.8f, i == mLuckyItemList.size()-1 ? sweepAngle-5.6f : sweepAngle-2.8f,false, mArcPaint);
+
+
+                mArcPaint.setStyle(Paint.Style.STROKE);
+                mArcPaint.setShader(null);
+                mArcPaint.setStrokeWidth(25);
+                mArcPaint.setColor(Color.argb(51,255,255,255));
+                //mArcPaint.setStrokeWidth(mEdgeWidth);
+                mArcPaint.setStrokeCap(Paint.Cap.BUTT);
+                canvas.drawArc(mRangeInner,  tmpAngle+2.8f, i == mLuckyItemList.size()-1 ? sweepAngle-5.6f : sweepAngle-2.8f,false, mArcPaint);
+
 
 
                 //outer circle
@@ -441,6 +448,8 @@ public class PielView extends View {
         path.close();
 
         canvas.rotate(initFloat + (arraySize / 18f), x, y);
+
+        canvas.scale(1f, 1f, x, y);
 
         if(mStr.length() > 15) {
             String kept = mStr.substring(0, 15);
