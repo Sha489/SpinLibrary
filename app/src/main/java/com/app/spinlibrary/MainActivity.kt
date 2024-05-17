@@ -3,6 +3,7 @@ package com.app.spinlibrary
 import android.os.Bundle
 import android.view.animation.Animation
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import rubikstudio.library.LuckyWheelView
 import rubikstudio.library.model.LuckyItem
@@ -16,6 +17,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         luckyWheelView = findViewById(R.id.luckyWheel)
         setData()
+        luckyWheelView?.setOnClickListener {
+            luckyWheelView?.startLuckyWheelWithTargetIndex(5)
+        }
+
     }
 
     fun setData() {
@@ -94,6 +99,7 @@ class MainActivity : AppCompatActivity() {
         luckyWheelView?.setData(luckyItems)
         luckyWheelView?.setTouchEnabled(false)
         luckyWheelView?.setBorderWidth(35)
+        luckyWheelView?.setRound(6)
         luckyWheelView?.setBorderColor(ContextCompat.getColor(applicationContext, R.color.black))
         luckyWheelView?.setLuckyWheelBackgrouldColor(ContextCompat.getColor(applicationContext, R.color.black))
         //luckyWheelView?.startLuckyWheelWithTargetIndex(5)
