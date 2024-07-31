@@ -72,7 +72,7 @@ public class LuckyWheelView extends RelativeLayout implements PielView.PieRotate
             mBackgroundColor = typedArray.getColor(R.styleable.LuckyWheelView_lkwBackgroundColor, 0xffcc0000);
             mTopTextSize = typedArray.getDimensionPixelSize(R.styleable.LuckyWheelView_lkwTopTextSize, (int) LuckyWheelUtils.convertDpToPixel(10f, getContext()));
             mSecondaryTextSize = typedArray.getDimensionPixelSize(R.styleable.LuckyWheelView_lkwSecondaryTextSize, (int) LuckyWheelUtils.convertDpToPixel(20f, getContext()));
-            mTextColor = typedArray.getColor(R.styleable.LuckyWheelView_lkwTopTextColor, 0);
+//            mTextColor = typedArray.getColor(R.styleable.LuckyWheelView_lkwTopTextColor, 0);
             mTopTextPadding = typedArray.getDimensionPixelSize(R.styleable.LuckyWheelView_lkwTopTextPadding, (int) LuckyWheelUtils.convertDpToPixel(10f, getContext())) + (int) LuckyWheelUtils.convertDpToPixel(10f, getContext());
             mCursorImage = typedArray.getDrawable(R.styleable.LuckyWheelView_lkwCursor);
             mCenterImage = typedArray.getDrawable(R.styleable.LuckyWheelView_lkwCenterImage);
@@ -95,9 +95,7 @@ public class LuckyWheelView extends RelativeLayout implements PielView.PieRotate
         pielView.setPieCenterImage(mCenterImage);
         pielView.setBorderColor(mBorderColor);
         pielView.setBorderWidth(mEdgeWidth);
-
-        if (mTextColor != 0)
-            pielView.setPieTextColor(mTextColor);
+//        pielView.setPieTextColor(mTextColor);
 
         ivCursorView.setImageDrawable(mCursorImage);
 
@@ -156,9 +154,9 @@ public class LuckyWheelView extends RelativeLayout implements PielView.PieRotate
         pielView.setBorderWidth(width);
     }
 
-    public void setLuckyWheelTextColor(int color) {
-        pielView.setPieTextColor(color);
-    }
+//    public void setLuckyWheelTextColor(int color) {
+//        pielView.setPieTextColor(color);
+//    }
 
     /**
      * @param data

@@ -99,7 +99,7 @@ public class PielView extends View {
         mTextPaint.setAntiAlias(true);
 
 
-        if (textColor != 0) mTextPaint.setColor(textColor);
+//        if (textColor != 0) mTextPaint.setColor(textColor);
         mTextPaint.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 14,
                 getResources().getDisplayMetrics()));
 
@@ -152,10 +152,10 @@ public class PielView extends View {
         invalidate();
     }
 
-    public void setPieTextColor(int color) {
-        textColor = color;
-        invalidate();
-    }
+//    public void setPieTextColor(int color) {
+//        textColor = color;
+//        invalidate();
+//    }
 
     private void drawPieBackgroundWithBitmap(Canvas canvas, Bitmap bitmap) {
         canvas.drawBitmap(bitmap, null, new Rect(mPadding / 2, mPadding / 2,
@@ -201,14 +201,15 @@ public class PielView extends View {
             if (!TextUtils.isEmpty(mLuckyItemList.get(i).topText))
                 drawTopText(canvas, tmpAngle, sweepAngle, mLuckyItemList.get(i).topText, sliceColor);
             if (!TextUtils.isEmpty(mLuckyItemList.get(i).secondaryText))
-                drawSecondaryText(canvas, tmpAngle, mLuckyItemList.get(i).secondaryText, sliceColor);
+                drawSecondaryText(canvas, tmpAngle, mLuckyItemList.get(i).secondaryText, sliceColor, mLuckyItemList.get(i).textColor);
 
             if (mLuckyItemList.get(i).icon != 0)
                 drawImage(canvas, tmpAngle, BitmapFactory.decodeResource(getResources(),
                         mLuckyItemList.get(i).icon));
             tmpAngle += sweepAngle;
 
-            mTextPaint.setColor(mLuckyItemList.get(i).textColor);
+//            if (textColor == 0)
+//                mTextPaint.setColor(mLuckyItemList.get(i).textColor);
         }
 
 //        drawCenterImage(canvas, drawableCenterImage);
@@ -283,8 +284,7 @@ public class PielView extends View {
         Path path = new Path();
         path.addArc(mRange, tmpAngle, sweepAngle);
 
-        if (textColor == 0)
-            mTextPaint.setColor(isColorDark(backgroundColor) ? 0xffffffff : 0xff000000);
+//       mTextPaint.setColor(textColor);
 
         Typeface typeface = Typeface.create(Typeface.SANS_SERIF, Typeface.NORMAL);
         mTextPaint.setTypeface(typeface);
@@ -304,12 +304,12 @@ public class PielView extends View {
      * @param mStr
      * @param backgroundColor
      */
-    private void drawSecondaryText(Canvas canvas, float tmpAngle, String mStr, int backgroundColor) {
+    private void drawSecondaryText(Canvas canvas, float tmpAngle, String mStr, int backgroundColor, int textColor) {
         canvas.save();
         int arraySize = mLuckyItemList.size();
 
 //        if (textColor == 0)
-//            mTextPaint.setColor(isColorDark(backgroundColor) ? 0xffffffff : 0xff000000);
+            mTextPaint.setColor(textColor);
 //
 //        if (backgroundColor == -1) {
 //            mTextPaint.setColor(Color.parseColor("#000000"));
