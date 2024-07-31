@@ -260,7 +260,7 @@ public class PielView extends View {
         int x = (int) (mCenter + mRadius / 2 /1.7* Math.cos(angle));
         int y = (int) (mCenter + mRadius / 2 /1.7 * Math.sin(angle));
 
-        float size = imageSize[mLuckyItemList.size()];
+        float size = mLuckyItemList.size() < imageSize.length ? imageSize[mLuckyItemList.size()] : 1.3f ;
         Rect rect = new Rect((int) (x - imgWidth / size),(int) (y - imgWidth / size),
                 (int) (x + imgWidth / size),(int) (y + imgWidth / size));
         canvas.drawBitmap(bitmap, null, rect, null);
