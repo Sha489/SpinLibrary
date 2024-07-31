@@ -207,6 +207,8 @@ public class PielView extends View {
                 drawImage(canvas, tmpAngle, BitmapFactory.decodeResource(getResources(),
                         mLuckyItemList.get(i).icon));
             tmpAngle += sweepAngle;
+
+            mTextPaint.setColor(mLuckyItemList.get(i).textColor);
         }
 
 //        drawCenterImage(canvas, drawableCenterImage);
@@ -315,10 +317,10 @@ public class PielView extends View {
 //            mTextPaint.setColor(Color.parseColor("#FFDE88"));
 //        }
 
-        if (textColor == 0)
-            mTextPaint.setColor(Color.parseColor("#000000"));
-        else
-            mTextPaint.setColor(textColor);
+//        if (textColor == 0)
+//            mTextPaint.setColor(Color.parseColor("#000000"));
+//        else
+//            mTextPaint.setColor(textColor);
 
 //        DisplayMetrics displayMetrics = new DisplayMetrics();
 //        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);

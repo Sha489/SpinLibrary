@@ -10,9 +10,11 @@ public class LuckyItem {
     public int secondaryTextOrientation;
     public int icon;
     public int color;
+    public int textColor;
 
-    public LuckyItem(String secondaryText, int color) {
+    public LuckyItem(String secondaryText, int color, int textColor) {
         this.color = color;
         this.secondaryText = secondaryText;
+        this.textColor = textColor;
     }
 }
