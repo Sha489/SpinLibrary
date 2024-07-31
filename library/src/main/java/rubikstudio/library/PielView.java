@@ -306,14 +306,19 @@ public class PielView extends View {
         canvas.save();
         int arraySize = mLuckyItemList.size();
 
-        if (textColor == 0)
-            mTextPaint.setColor(isColorDark(backgroundColor) ? 0xffffffff : 0xff000000);
+//        if (textColor == 0)
+//            mTextPaint.setColor(isColorDark(backgroundColor) ? 0xffffffff : 0xff000000);
+//
+//        if (backgroundColor == -1) {
+//            mTextPaint.setColor(Color.parseColor("#000000"));
+//        } else {
+//            mTextPaint.setColor(Color.parseColor("#FFDE88"));
+//        }
 
-        if (backgroundColor == -1) {
+        if (textColor == 0)
             mTextPaint.setColor(Color.parseColor("#000000"));
-        } else {
-            mTextPaint.setColor(Color.parseColor("#FFDE88"));
-        }
+        else
+            mTextPaint.setColor(textColor);
 
 //        DisplayMetrics displayMetrics = new DisplayMetrics();
 //        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
