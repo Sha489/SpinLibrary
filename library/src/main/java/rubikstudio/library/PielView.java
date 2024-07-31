@@ -46,7 +46,6 @@ import rubikstudio.library.model.LuckyItem;
 public class PielView extends View {
     private RectF mRange = new RectF();
     private int mRadius;
-
     private Paint mArcPaint;
     private Paint mBackgroundPaint;
     private TextPaint mTextPaint;
@@ -318,13 +317,14 @@ public class PielView extends View {
         int arraySize = mLuckyItemList.size();
 
         if (textColor == 0)
-            mTextPaint.setColor(isColorDark(backgroundColor) ? 0xffffffff : 0xff000000);
-
-        if (backgroundColor == -1) {
             mTextPaint.setColor(Color.parseColor("#000000"));
-        } else {
-            mTextPaint.setColor(Color.parseColor("#FFDE88"));
-        }
+        else
+            mTextPaint.setColor(textColor);
+//        if (backgroundColor == -1) {
+//            mTextPaint.setColor(Color.parseColor("#000000"));
+//        } else {
+//            mTextPaint.setColor(Color.parseColor("#FFDE88"));
+//        }
 
 //        DisplayMetrics displayMetrics = new DisplayMetrics();
 //        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
