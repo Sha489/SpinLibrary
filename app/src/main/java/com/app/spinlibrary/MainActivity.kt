@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         luckyItems?.add(LuckyItem("", ContextCompat.getColor(applicationContext, android.R.color.white), ContextCompat.getColor(applicationContext, android.R.color.holo_green_dark)))
         luckyItems?.add(LuckyItem(" Spin wheel and win", ContextCompat.getColor(applicationContext, android.R.color.darker_gray), ContextCompat.getColor(applicationContext, android.R.color.holo_blue_bright)))
         luckyItems?.add(LuckyItem("", ContextCompat.getColor(applicationContext, android.R.color.white),ContextCompat.getColor(applicationContext, android.R.color.holo_green_dark)))
-        luckyItems?.add(LuckyItem(" win offers", ContextCompat.getColor(applicationContext, android.R.color.darker_gray), ContextCompat.getColor(applicationContext, android.R.color.white)))
+        luckyItems?.add(LuckyItem("1000", ContextCompat.getColor(applicationContext, android.R.color.darker_gray), ContextCompat.getColor(applicationContext, android.R.color.white)))
         luckyItems?.add(LuckyItem("", ContextCompat.getColor(applicationContext, android.R.color.white), ContextCompat.getColor(applicationContext, android.R.color.holo_green_dark)))
         luckyItems?.add(LuckyItem(" exciting offers", ContextCompat.getColor(applicationContext, android.R.color.darker_gray), ContextCompat.getColor(applicationContext, android.R.color.holo_green_dark)))
         luckyItems?.add(LuckyItem("", ContextCompat.getColor(applicationContext, android.R.color.white), ContextCompat.getColor(applicationContext, android.R.color.holo_green_dark)))

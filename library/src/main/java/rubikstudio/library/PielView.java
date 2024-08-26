@@ -333,14 +333,17 @@ public class PielView extends View {
         mTextPaint.setTypeface(typeface);
 
 //        if(getHeight() <= 320 && getWidth() <= 320){
-//            mTextPaint.setTextSize(30);
+//            mTextPaint.setTextSize(35);
 //        } else if(getHeight() > 320 && getHeight() <= 650 && getWidth() > 320 && getWidth() <=650) {
-//            mTextPaint.setTextSize(30);
+//            mTextPaint.setTextSize(40);
 //        } else if(getHeight() > 650 && getHeight() <= 1000 && getWidth() > 650 && getWidth() <= 1000){
 //            mTextPaint.setTextSize(40);
 //        } else {
+        if(mStr.length() < 10) {
             mTextPaint.setTextSize(45);
-//        }
+        } else {
+            mTextPaint.setTextSize(35);
+        }
 
         mTextPaint.setTextAlign(Paint.Align.CENTER);
 
