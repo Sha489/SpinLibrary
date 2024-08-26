@@ -286,7 +286,8 @@ public class PielView extends View {
 
 //       mTextPaint.setColor(textColor);
 
-        Typeface typeface = Typeface.create(Typeface.SANS_SERIF, Typeface.NORMAL);
+//        Typeface typeface = Typeface.create(Typeface.SANS_SERIF, Typeface.NORMAL);
+        Typeface typeface = Typeface.createFromAsset(getContext().getAssets(), "fonts/HelveticaNowDisplay-Bold.otf");
         mTextPaint.setTypeface(typeface);
         mTextPaint.setTextAlign(Paint.Align.LEFT);
         mTextPaint.setTextSize(mTopTextSize);
@@ -327,18 +328,19 @@ public class PielView extends View {
 //        int height = displayMetrics.heightPixels;
 //        int width = displayMetrics.widthPixels;
 
-        Typeface typeface = Typeface.create(Typeface.SERIF, Typeface.BOLD);
+//        Typeface typeface = Typeface.create(Typeface.SERIF, Typeface.BOLD);
+        Typeface typeface = Typeface.createFromAsset(getContext().getAssets(), "fonts/HelveticaNowDisplay-Bold.otf");
         mTextPaint.setTypeface(typeface);
 
-        if(getHeight() <= 320 && getWidth() <= 320){
-            mTextPaint.setTextSize(8);
-        } else if(getHeight() > 320 && getHeight() <= 650 && getWidth() > 320 && getWidth() <=650) {
-            mTextPaint.setTextSize(15);
-        } else if(getHeight() > 650 && getHeight() <= 1000 && getWidth() > 650 && getWidth() <= 1000){
-            mTextPaint.setTextSize(30);
-        } else {
-            mTextPaint.setTextSize(30);
-        }
+//        if(getHeight() <= 320 && getWidth() <= 320){
+//            mTextPaint.setTextSize(30);
+//        } else if(getHeight() > 320 && getHeight() <= 650 && getWidth() > 320 && getWidth() <=650) {
+//            mTextPaint.setTextSize(30);
+//        } else if(getHeight() > 650 && getHeight() <= 1000 && getWidth() > 650 && getWidth() <= 1000){
+//            mTextPaint.setTextSize(40);
+//        } else {
+            mTextPaint.setTextSize(45);
+//        }
 
         mTextPaint.setTextAlign(Paint.Align.CENTER);
 
