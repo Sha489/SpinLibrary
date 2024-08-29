@@ -372,6 +372,7 @@ public class PielView extends View {
             String remainder = mStr.substring(17, mStr.length());
             canvas.drawText(remainder, x, y, mTextPaint);
         } else {
+            y += mTextPaint.descent() - mTextPaint.ascent() -25;
             canvas.drawText(mStr, x, y, mTextPaint);
         }
 //        for (String line: mStr.split(" ", 2)) {
