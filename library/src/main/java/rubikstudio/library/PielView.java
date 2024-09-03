@@ -201,7 +201,7 @@ public class PielView extends View {
             if (!TextUtils.isEmpty(mLuckyItemList.get(i).topText))
                 drawTopText(canvas, tmpAngle, sweepAngle, mLuckyItemList.get(i).topText, sliceColor);
             if (!TextUtils.isEmpty(mLuckyItemList.get(i).secondaryText))
-                drawSecondaryText(canvas, tmpAngle, mLuckyItemList.get(i).secondaryText, sliceColor, mLuckyItemList.get(i).textColor);
+                drawSecondaryText(canvas, tmpAngle, mLuckyItemList.get(i).secondaryText, sliceColor, mLuckyItemList.get(i).textColor,mLuckyItemList.get(i).topReward);
 
             if (mLuckyItemList.get(i).icon != 0)
                 drawImage(canvas, tmpAngle, BitmapFactory.decodeResource(getResources(),
@@ -305,12 +305,13 @@ public class PielView extends View {
      * @param mStr
      * @param backgroundColor
      */
-    private void drawSecondaryText(Canvas canvas, float tmpAngle, String mStr, int backgroundColor, int textColor) {
+    private void drawSecondaryText(Canvas canvas, float tmpAngle, String mStr, int backgroundColor, int textColor, boolean isTopReward) {
         canvas.save();
         int arraySize = mLuckyItemList.size();
 
 //        if (textColor == 0)
             mTextPaint.setColor(textColor);
+
 //
 //        if (backgroundColor == -1) {
 //            mTextPaint.setColor(Color.parseColor("#000000"));
@@ -345,6 +346,10 @@ public class PielView extends View {
             mTextPaint.setTextSize(35);
         }
 
+        if(isTopReward){
+            mTextPaint.setTextSize(65);
+        }
+
         mTextPaint.setTextAlign(Paint.Align.CENTER);
 
         float textWidth = mTextPaint.measureText(mStr);
@@ -352,8 +357,8 @@ public class PielView extends View {
         float initFloat = (tmpAngle + 360f / arraySize / 2);
         float angle = (float) (initFloat * Math.PI / 180);
 
-        int x = (int) (mCenter + mRadius / 2 / 2 * Math.cos(angle));
-        int y = (int) (mCenter + mRadius / 2 / 2 * Math.sin(angle));
+        int x = (int) (mCenter + mRadius / 2 / 1.7 * Math.cos(angle));
+        int y = (int) (mCenter + mRadius / 2 / 1.7 * Math.sin(angle));
 
         RectF rect = new RectF(x + textWidth, y,
                 x - textWidth, y);
@@ -372,9 +377,14 @@ public class PielView extends View {
             String remainder = mStr.substring(17, mStr.length());
             canvas.drawText(remainder, x, y, mTextPaint);
         } else {
-            y += mTextPaint.descent() - mTextPaint.ascent() -25;
+            if(isTopReward) {
+                y += mTextPaint.descent() - mTextPaint.ascent() - 40;
+            } else {
+                y += mTextPaint.descent() - mTextPaint.ascent() - 25;
+            }
             canvas.drawText(mStr, x, y, mTextPaint);
         }
+
 //        for (String line: mStr.split(" ", 2)) {
 //            canvas.drawText(line, x, y, mTextPaint);
 //
