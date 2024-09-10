@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.TimeInterpolator;
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -19,6 +20,7 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
@@ -73,6 +75,8 @@ public class PielView extends View {
     private List<LuckyItem> mLuckyItemList;
 
     private PieRotateListener mPieRotateListener;
+
+    Resources r = getContext().getResources();
 
     public interface PieRotateListener {
         void rotateDone(int index);
@@ -340,14 +344,22 @@ public class PielView extends View {
 //        } else if(getHeight() > 650 && getHeight() <= 1000 && getWidth() > 650 && getWidth() <= 1000){
 //            mTextPaint.setTextSize(40);
 //        } else {
-        if(mStr.length() < 10) {
-            mTextPaint.setTextSize(45);
+        if(mStr.length() < 6) {
+            mTextPaint.setTextSize(Math.round(
+                    TypedValue.applyDimension(
+                            TypedValue.COMPLEX_UNIT_DIP, 16f,r.getDisplayMetrics())));
         } else {
-            mTextPaint.setTextSize(35);
+            mTextPaint.setTextSize(Math.round(
+                    TypedValue.applyDimension(
+                            TypedValue.COMPLEX_UNIT_DIP, 13f,r.getDisplayMetrics())));
         }
 
         if(isTopReward){
-            mTextPaint.setTextSize(65);
+            //mTextPaint.setTextSize(65);
+            mTextPaint.setTextSize(Math.round(
+                    TypedValue.applyDimension(
+                            TypedValue.COMPLEX_UNIT_DIP, 18f,r.getDisplayMetrics())));
+
         }
 
         mTextPaint.setTextAlign(Paint.Align.CENTER);
@@ -369,18 +381,21 @@ public class PielView extends View {
 
         canvas.rotate(initFloat + (arraySize / 18f), x, y);
 
-        if(mStr.length() > 17) {
-            String kept = mStr.substring(0, 17);
+        if(mStr.length() > 13) {
+            mTextPaint.setTextSize(Math.round(
+                    TypedValue.applyDimension(
+                            TypedValue.COMPLEX_UNIT_DIP, 11f,r.getDisplayMetrics())));
+            String kept = mStr.substring(0, 13);
             canvas.drawText(kept, x, + y, mTextPaint);
             y += mTextPaint.descent() - mTextPaint.ascent();
 
-            String remainder = mStr.substring(17, mStr.length());
+            String remainder = mStr.substring(13, mStr.length());
             canvas.drawText(remainder, x, y, mTextPaint);
         } else {
             if(isTopReward) {
-                y += mTextPaint.descent() - mTextPaint.ascent() - 40;
+                y += mTextPaint.descent() - mTextPaint.ascent() - 33;
             } else {
-                y += mTextPaint.descent() - mTextPaint.ascent() - 25;
+                y += mTextPaint.descent() - mTextPaint.ascent() - 22;
             }
             canvas.drawText(mStr, x, y, mTextPaint);
         }
