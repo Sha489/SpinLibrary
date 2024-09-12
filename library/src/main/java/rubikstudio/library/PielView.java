@@ -393,9 +393,13 @@ public class PielView extends View {
             canvas.drawText(remainder, x, y, mTextPaint);
         } else {
             if(isTopReward) {
-                y += mTextPaint.descent() - mTextPaint.ascent() - 33;
+                y += mTextPaint.descent() - mTextPaint.ascent() - 40;
             } else {
-                y += mTextPaint.descent() - mTextPaint.ascent() - 22;
+                if(mStr.length() < 6) {
+                    y += mTextPaint.descent() - mTextPaint.ascent() - 30;
+                } else {
+                    y += mTextPaint.descent() - mTextPaint.ascent() - 22;
+                }
             }
             canvas.drawText(mStr, x, y, mTextPaint);
         }
