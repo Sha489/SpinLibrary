@@ -351,7 +351,7 @@ public class PielView extends View {
         } else {
             mTextPaint.setTextSize(Math.round(
                     TypedValue.applyDimension(
-                            TypedValue.COMPLEX_UNIT_DIP, 13f,r.getDisplayMetrics())));
+                            TypedValue.COMPLEX_UNIT_DIP, 11f,r.getDisplayMetrics())));
         }
 
         if(isTopReward){
@@ -384,7 +384,7 @@ public class PielView extends View {
         if(mStr.length() > 13) {
             mTextPaint.setTextSize(Math.round(
                     TypedValue.applyDimension(
-                            TypedValue.COMPLEX_UNIT_DIP, 11f,r.getDisplayMetrics())));
+                            TypedValue.COMPLEX_UNIT_DIP, 10f,r.getDisplayMetrics())));
             String kept = mStr.substring(0, 13);
             canvas.drawText(kept, x, + y, mTextPaint);
             y += mTextPaint.descent() - mTextPaint.ascent();
