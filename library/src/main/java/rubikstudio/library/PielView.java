@@ -347,18 +347,18 @@ public class PielView extends View {
         if(mStr.length() < 6) {
             mTextPaint.setTextSize(Math.round(
                     TypedValue.applyDimension(
-                            TypedValue.COMPLEX_UNIT_DIP, 16f,r.getDisplayMetrics())));
+                            TypedValue.COMPLEX_UNIT_DIP, 18f,r.getDisplayMetrics())));
         } else {
             mTextPaint.setTextSize(Math.round(
                     TypedValue.applyDimension(
-                            TypedValue.COMPLEX_UNIT_DIP, 11f,r.getDisplayMetrics())));
+                            TypedValue.COMPLEX_UNIT_DIP, 12f,r.getDisplayMetrics())));
         }
 
         if(isTopReward){
             //mTextPaint.setTextSize(65);
             mTextPaint.setTextSize(Math.round(
                     TypedValue.applyDimension(
-                            TypedValue.COMPLEX_UNIT_DIP, 18f,r.getDisplayMetrics())));
+                            TypedValue.COMPLEX_UNIT_DIP, 20f,r.getDisplayMetrics())));
 
         }
 
