@@ -358,7 +358,7 @@ public class PielView extends View {
             //mTextPaint.setTextSize(65);
             mTextPaint.setTextSize(Math.round(
                     TypedValue.applyDimension(
-                            TypedValue.COMPLEX_UNIT_DIP, 20f,r.getDisplayMetrics())));
+                            TypedValue.COMPLEX_UNIT_DIP, 19f,r.getDisplayMetrics())));
 
         }
 
