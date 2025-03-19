@@ -2,6 +2,7 @@ package rubikstudio.library;
 
 import android.animation.Animator;
 import android.animation.TimeInterpolator;
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Resources;
@@ -11,11 +12,13 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.Handler;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -33,6 +36,7 @@ import java.util.List;
 import java.util.Random;
 
 import androidx.annotation.IntDef;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 
 import rubikstudio.library.model.LuckyItem;
@@ -48,6 +52,7 @@ public class PielView extends View {
     private Paint mArcPaint;
     private Paint mBackgroundPaint;
     private TextPaint mTextPaint;
+    private TextPaint mCurrencyPaint;
 
     private float mStartAngle = 0;
     private int mCenter;
@@ -61,16 +66,20 @@ public class PielView extends View {
 
     private int borderColor = 0;
     private int defaultBackgroundColor = 0;
+    private int mOverlayColor = 0;
+    private boolean showOverlay = false;
     private Drawable drawableCenterImage;
     private int textColor = 0;
 
     private int predeterminedNumber = -1;
+    private int targetIndex;
 
     float viewRotation;
     double fingerRotation;
     long downPressTime, upPressTime;
     double newRotationStore[] = new double[3];
 
+    private Canvas canvas;
 
     private List<LuckyItem> mLuckyItemList;
 
@@ -100,11 +109,14 @@ public class PielView extends View {
         mArcPaint.setDither(true);
 
         mTextPaint = new TextPaint();
+        mCurrencyPaint = new TextPaint();
         mTextPaint.setAntiAlias(true);
-
+        mCurrencyPaint.setAntiAlias(true);
 
 //        if (textColor != 0) mTextPaint.setColor(textColor);
         mTextPaint.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 14,
+                getResources().getDisplayMetrics()));
+        mCurrencyPaint.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 5,
                 getResources().getDisplayMetrics()));
 
         mRange = new RectF(mPadding, mPadding, mPadding + mRadius, mPadding + mRadius);
@@ -121,6 +133,11 @@ public class PielView extends View {
 
     public void setPieBackgroundColor(int color) {
         defaultBackgroundColor = color;
+        invalidate();
+    }
+
+    public void setOverlayColor(int color) {
+        mOverlayColor = color;
         invalidate();
     }
 
@@ -170,8 +187,9 @@ public class PielView extends View {
     /**
      * @param canvas
      */
+    @SuppressLint("DrawAllocation")
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(final Canvas canvas) {
         super.onDraw(canvas);
 
         if (mLuckyItemList == null) {
@@ -216,6 +234,10 @@ public class PielView extends View {
 //                mTextPaint.setColor(mLuckyItemList.get(i).textColor);
         }
 
+        if(showOverlay) {
+            drawOverlayColor(canvas, mOverlayColor);
+        }
+
 //        drawCenterImage(canvas, drawableCenterImage);
     }
 
@@ -225,6 +247,33 @@ public class PielView extends View {
         mBackgroundPaint = new Paint();
         mBackgroundPaint.setColor(color);
         canvas.drawCircle(mCenter, mCenter, mCenter - 5, mBackgroundPaint);
+    }
+
+    private void drawOverlayColor(Canvas canvas, int color) {
+
+        float tmpAngle = mStartAngle;
+        float sweepAngle = 360f / mLuckyItemList.size();
+
+        for (int i = 0; i < mLuckyItemList.size(); i++) {
+
+            if (targetIndex != i) {
+
+                if (mLuckyItemList.get(i).color != 0) {
+                    Paint overlayPaint = new Paint();
+                    overlayPaint.setColor(ContextCompat.getColor(getContext(), android.R.color.black));
+                    overlayPaint.setAlpha(150);
+                    canvas.drawArc(mRange, tmpAngle, sweepAngle, true, overlayPaint);
+
+                    tmpAngle += sweepAngle;
+                }
+            } else {
+                mArcPaint.setStyle(Paint.Style.STROKE);
+                mArcPaint.setColor(Color.parseColor("#e0c964"));
+                mArcPaint.setStrokeWidth(15);
+                canvas.drawArc(mRange, tmpAngle, sweepAngle, true, mArcPaint);
+                tmpAngle += sweepAngle;
+            }
+        }
     }
 
     /**
@@ -253,14 +302,22 @@ public class PielView extends View {
     private void drawImage(Canvas canvas, float tmpAngle, Bitmap bitmap) {
         int imgWidth = mRadius / mLuckyItemList.size();
 
-        float angle = (float) ((tmpAngle + 360f / mLuckyItemList.size() / 2) * Math.PI / 180);
+        float angle = (tmpAngle + 360f / mLuckyItemList.size() / 2);
+        float radian = (float) (angle * Math.PI / 180);
 
-        int x = (int) (mCenter + mRadius / 2 / 2 * Math.cos(angle));
-        int y = (int) (mCenter + mRadius / 2 / 2 * Math.sin(angle));
+        int x = (int) (mCenter + mRadius / 2 / 3 * Math.cos(radian));
+        int y = (int) (mCenter + mRadius / 2 / 3 * Math.sin(radian));
 
-        Rect rect = new Rect(x - imgWidth / 2, y - imgWidth / 2,
-                x + imgWidth / 2, y + imgWidth / 2);
+        Rect rect = new Rect(x - imgWidth / 4, y - imgWidth / 4,
+                x + imgWidth / 4, y + imgWidth / 4);
+
+        canvas.save();
+
+        canvas.rotate(angle + 90, rect.centerX(), rect.centerY());
+
         canvas.drawBitmap(bitmap, null, rect, null);
+
+        canvas.restore();
     }
 
     private void drawCenterImage(Canvas canvas, Drawable drawable) {
@@ -293,7 +350,7 @@ public class PielView extends View {
 //        Typeface typeface = Typeface.create(Typeface.SANS_SERIF, Typeface.NORMAL);
         Typeface typeface = Typeface.createFromAsset(getContext().getAssets(), "fonts/HelveticaNowDisplay-Bold.otf");
         mTextPaint.setTypeface(typeface);
-        mTextPaint.setTextAlign(Paint.Align.LEFT);
+        mTextPaint.setTextAlign(Paint.Align.CENTER);
         mTextPaint.setTextSize(mTopTextSize);
         float textWidth = mTextPaint.measureText(mStr);
         int hOffset = (int) (mRadius * Math.PI / mLuckyItemList.size() / 2 - textWidth / 2);
@@ -301,7 +358,6 @@ public class PielView extends View {
         int vOffset = mTopTextPadding;
         canvas.drawTextOnPath(mStr, path, hOffset, vOffset, mTextPaint);
     }
-
 
     /**
      * @param canvas
@@ -315,6 +371,7 @@ public class PielView extends View {
 
 //        if (textColor == 0)
             mTextPaint.setColor(textColor);
+            mCurrencyPaint.setColor(textColor);
 
 //
 //        if (backgroundColor == -1) {
@@ -369,17 +426,17 @@ public class PielView extends View {
         float initFloat = (tmpAngle + 360f / arraySize / 2);
         float angle = (float) (initFloat * Math.PI / 180);
 
-        int x = (int) (mCenter + mRadius / 2 / 1.7 * Math.cos(angle));
-        int y = (int) (mCenter + mRadius / 2 / 1.7 * Math.sin(angle));
+        int x = (int) (mCenter + mRadius / 2 / 2  * Math.cos(angle));
+        int y = (int) (mCenter + mRadius / 2 / 2 * Math.sin(angle));
 
-        RectF rect = new RectF(x + textWidth, y,
-                x - textWidth, y);
+//        RectF rect = new RectF(x + textWidth, y,
+//                x - textWidth, y);
+//
+//        Path path = new Path();
+//        path.addRect(rect, Path.Direction.CW);
+//        path.close();
 
-        Path path = new Path();
-        path.addRect(rect, Path.Direction.CW);
-        path.close();
-
-        canvas.rotate(initFloat + (arraySize / 18f), x, y);
+        canvas.rotate(initFloat + (arraySize / 18f) + 90, x, y);
 
         if(mStr.length() > 13) {
             mTextPaint.setTextSize(Math.round(
@@ -390,18 +447,36 @@ public class PielView extends View {
             y += mTextPaint.descent() - mTextPaint.ascent();
 
             String remainder = mStr.substring(13, mStr.length());
+
             canvas.drawText(remainder, x, y, mTextPaint);
         } else {
             if(isTopReward) {
-                y += mTextPaint.descent() - mTextPaint.ascent() - 40;
+                y += mTextPaint.descent() - mTextPaint.ascent() - 100;
             } else {
-                if(mStr.length() < 6) {
-                    y += mTextPaint.descent() - mTextPaint.ascent() - 30;
-                } else {
-                    y += mTextPaint.descent() - mTextPaint.ascent() - 22;
-                }
+                y += mTextPaint.descent() - mTextPaint.ascent() - 50;
+                x += mTextPaint.descent() - mTextPaint.ascent() - 50;
+
+                y += mCurrencyPaint.descent() - mCurrencyPaint.ascent() - 50;
+                x += mCurrencyPaint.descent() - mCurrencyPaint.ascent() - 50;
             }
-            canvas.drawText(mStr, x, y, mTextPaint);
+
+            Typeface typeface1 = Typeface.createFromAsset(getContext().getAssets(), "fonts/HelveticaNowDisplay-Bold.otf");
+            mCurrencyPaint.setTypeface(typeface1);
+            mCurrencyPaint.setTextSize(Math.round(
+                    TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 7f,r.getDisplayMetrics())));
+            String currency = "SAR";
+            canvas.drawText(mStr, x , y , mTextPaint);
+            if(mStr.length() == 2) {
+                canvas.drawText(currency, x + 35, y - 5, mCurrencyPaint);
+            } else if(mStr.length() == 3) {
+                canvas.drawText(currency, x + 45, y - 5, mCurrencyPaint);
+            } else if(mStr.length() == 4) {
+                canvas.drawText(currency, x + 65, y - 5, mCurrencyPaint);
+            } else if(mStr.length() == 5) {
+                canvas.drawText(currency, x + 75, y - 5, mCurrencyPaint);
+            } else {
+                canvas.drawText(currency, x + 40, y - 5, mCurrencyPaint);
+            }
         }
 
 //        for (String line: mStr.split(" ", 2)) {
@@ -433,6 +508,7 @@ public class PielView extends View {
     }
 
     public void rotateTo(final int index) {
+        targetIndex = index;
         Random rand = new Random();
         rotateTo(index, 0, true);
     }
@@ -506,6 +582,8 @@ public class PielView extends View {
                         setRotation(getRotation() % 360f);
                         if (mPieRotateListener != null) {
                             mPieRotateListener.rotateDone(index);
+                            showOverlay = true;
+                            invalidate();
                         }
                     }
 
@@ -666,4 +744,5 @@ public class PielView extends View {
         int CLOCKWISE = 0;
         int COUNTERCLOCKWISE = 1;
     }
+
 }

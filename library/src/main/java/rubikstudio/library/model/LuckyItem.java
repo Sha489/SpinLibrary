@@ -13,10 +13,16 @@ public class LuckyItem {
     public int textColor;
     public boolean topReward;
 
-    public LuckyItem(String secondaryText, int color, int textColor,boolean topReward) {
+    public LuckyItem(String secondaryText, int color, int textColor, boolean topReward, int icon) {
         this.color = color;
         this.secondaryText = secondaryText;
         this.textColor = textColor;
         this.topReward = topReward;
+        this.icon = icon;
+    }
+
+    public LuckyItem(String secondaryText, int textColor) {
+        this.secondaryText = secondaryText;
+        this.textColor = textColor;
     }
 }

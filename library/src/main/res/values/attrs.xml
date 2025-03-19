@@ -6,6 +6,7 @@
 
     <declare-styleable name="LuckyWheelView">
         <attr name="lkwBackgroundColor" format="color" />
+        <attr name="lkwOverlayColor" format="color" />
         <attr name="lkwCursor" format="reference" />
         <attr name="lkwCenterImage" format="reference" />
         <attr name="lkwEdgeColor" format="color" />

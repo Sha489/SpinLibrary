@@ -34,11 +34,8 @@ public class LuckyWheelUtils {
         return bitmap;
     }
 
-
     public static float convertDpToPixel(float dp, Context context) {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp,
                 context.getResources().getDisplayMetrics());
     }
-
-
 }

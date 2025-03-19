@@ -23,6 +23,7 @@ import rubikstudio.library.model.LuckyItem;
 
 public class LuckyWheelView extends RelativeLayout implements PielView.PieRotateListener {
     private int mBackgroundColor;
+    private int overlayColor;
     private int mTextColor;
     private int mTopTextSize;
     private int mSecondaryTextSize;
@@ -70,6 +71,7 @@ public class LuckyWheelView extends RelativeLayout implements PielView.PieRotate
         if (attrs != null) {
             TypedArray typedArray = ctx.obtainStyledAttributes(attrs, R.styleable.LuckyWheelView);
             mBackgroundColor = typedArray.getColor(R.styleable.LuckyWheelView_lkwBackgroundColor, 0xffcc0000);
+            overlayColor = typedArray.getColor(R.styleable.LuckyWheelView_lkwOverlayColor, 0xffcc0000);
             mTopTextSize = typedArray.getDimensionPixelSize(R.styleable.LuckyWheelView_lkwTopTextSize, (int) LuckyWheelUtils.convertDpToPixel(10f, getContext()));
             mSecondaryTextSize = typedArray.getDimensionPixelSize(R.styleable.LuckyWheelView_lkwSecondaryTextSize, (int) LuckyWheelUtils.convertDpToPixel(20f, getContext()));
 //            mTextColor = typedArray.getColor(R.styleable.LuckyWheelView_lkwTopTextColor, 0);
@@ -89,6 +91,7 @@ public class LuckyWheelView extends RelativeLayout implements PielView.PieRotate
 
         pielView.setPieRotateListener(this);
         pielView.setPieBackgroundColor(mBackgroundColor);
+        pielView.setOverlayColor(overlayColor);
         pielView.setTopTextPadding(mTopTextPadding);
         pielView.setTopTextSize(mTopTextSize);
         pielView.setSecondaryTextSizeSize(mSecondaryTextSize);
@@ -111,7 +114,6 @@ public class LuckyWheelView extends RelativeLayout implements PielView.PieRotate
         pielView.setTouchEnabled(touchEnabled);
     }
 
-    
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         //This is to control that the touch events triggered are only going to the PieView
@@ -136,6 +138,10 @@ public class LuckyWheelView extends RelativeLayout implements PielView.PieRotate
 
     public void setLuckyWheelBackgrouldColor(int color) {
         pielView.setPieBackgroundColor(color);
+    }
+
+    public void setLuckyWheelOverlayColor(int color) {
+        pielView.setOverlayColor(color);
     }
 
     public void setLuckyWheelCursorImage(int drawable) {
