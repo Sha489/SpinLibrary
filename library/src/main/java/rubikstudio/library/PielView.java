@@ -10,11 +10,14 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Shader;
+import android.graphics.SweepGradient;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -205,10 +208,30 @@ public class PielView extends View {
 
         for (int i = 0; i < mLuckyItemList.size(); i++) {
 
-            if (mLuckyItemList.get(i).color != 0) {
+            float startAngle = tmpAngle;
+            float endAngle = tmpAngle + sweepAngle;
+
+            float gradientStartAngle = startAngle + 90;
+            float gradientEndAngle = endAngle + 90;
+
+            float startX = mCenter + (float) Math.cos(Math.toRadians(gradientStartAngle)) * mRadius;
+            float startY = mCenter + (float) Math.sin(Math.toRadians(gradientStartAngle)) * mRadius;
+            float endX = mCenter + (float) Math.cos(Math.toRadians(gradientEndAngle)) * mRadius;
+            float endY = mCenter + (float) Math.sin(Math.toRadians(gradientEndAngle)) * mRadius;
+
+            Shader sliceGradient = new LinearGradient(
+                    startX, startY, endX, endY,
+                    new int[]{mLuckyItemList.get(i).gradientColor2, mLuckyItemList.get(i).gradientColor1},
+                    null,
+                    Shader.TileMode.CLAMP
+            );
+
+            if (mLuckyItemList.get(i).gradientColor1 != 0) {
                 mArcPaint.setStyle(Paint.Style.FILL);
-                mArcPaint.setColor(mLuckyItemList.get(i).color);
+                mArcPaint.setShader(sliceGradient);
                 canvas.drawArc(mRange, tmpAngle, sweepAngle, true, mArcPaint);
+
+                mArcPaint.setShader(null);
             }
 
             if (borderColor != 0 && mEdgeWidth > 0) {
@@ -258,7 +281,7 @@ public class PielView extends View {
 
             if (targetIndex != i) {
 
-                if (mLuckyItemList.get(i).color != 0) {
+                if (mLuckyItemList.get(i).gradientColor1 != 0) {
                     Paint overlayPaint = new Paint();
                     overlayPaint.setColor(ContextCompat.getColor(getContext(), android.R.color.black));
                     overlayPaint.setAlpha(150);
@@ -269,7 +292,7 @@ public class PielView extends View {
             } else {
                 mArcPaint.setStyle(Paint.Style.STROKE);
                 mArcPaint.setColor(Color.parseColor("#e0c964"));
-                mArcPaint.setStrokeWidth(15);
+                mArcPaint.setStrokeWidth(12);
                 canvas.drawArc(mRange, tmpAngle, sweepAngle, true, mArcPaint);
                 tmpAngle += sweepAngle;
             }
