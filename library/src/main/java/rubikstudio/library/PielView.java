@@ -490,13 +490,13 @@ public class PielView extends View {
             String currency = "SAR";
             canvas.drawText(mStr, x , y , mTextPaint);
             if(mStr.length() == 2) {
-                canvas.drawText(currency, x + 35, y - 5, mCurrencyPaint);
+                canvas.drawText(currency, x + 30, y - 5, mCurrencyPaint);
             } else if(mStr.length() == 3) {
-                canvas.drawText(currency, x + 45, y - 5, mCurrencyPaint);
+                canvas.drawText(currency, x + 40, y - 5, mCurrencyPaint);
             } else if(mStr.length() == 4) {
-                canvas.drawText(currency, x + 65, y - 5, mCurrencyPaint);
+                canvas.drawText(currency, x + 55, y - 5, mCurrencyPaint);
             } else if(mStr.length() == 5) {
-                canvas.drawText(currency, x + 75, y - 5, mCurrencyPaint);
+                canvas.drawText(currency, x + 65, y - 5, mCurrencyPaint);
             } else {
                 canvas.drawText(currency, x + 40, y - 5, mCurrencyPaint);
             }
