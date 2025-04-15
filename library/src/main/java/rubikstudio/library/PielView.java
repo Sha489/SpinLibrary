@@ -286,7 +286,7 @@ public class PielView extends View {
 
         Typeface typeface = Typeface.create(Typeface.SANS_SERIF, Typeface.NORMAL);
         mTextPaint.setTypeface(typeface);
-        mTextPaint.setTextAlign(Paint.Align.LEFT);
+        mTextPaint.setTextAlign(Paint.Align.CENTER);
         mTextPaint.setTextSize(mTopTextSize);
         float textWidth = mTextPaint.measureText(mStr);
         int hOffset = (int) (mRadius * Math.PI / mLuckyItemList.size() / 2 - textWidth / 2);
@@ -340,8 +340,8 @@ public class PielView extends View {
         float initFloat = (tmpAngle + 360f / arraySize / 2);
         float angle = (float) (initFloat * Math.PI / 180);
 
-        int x = (int) (mCenter + mRadius / 2 / 2 * Math.cos(angle));
-        int y = (int) (mCenter + mRadius / 2 / 2 * Math.sin(angle));
+        int x = (int) (mCenter + mRadius * 0.3f * Math.cos(angle));
+        int y = (int) (mCenter + mRadius * 0.3f * Math.sin(angle));
 
         RectF rect = new RectF(x + textWidth, y,
                 x - textWidth, y);
