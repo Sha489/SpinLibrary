@@ -18,6 +18,8 @@ class MainActivity : AppCompatActivity() {
         setData()
     }
 
+
+
     fun setData() {
         luckyItems = ArrayList<LuckyItem>()
 
