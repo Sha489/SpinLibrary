@@ -1,11 +1,13 @@
 package com.app.spinlibrary
 
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.view.animation.Animation
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import rubikstudio.library.LuckyWheelView
 import rubikstudio.library.model.LuckyItem
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,6 +21,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setData() {
+
+        Glide.with(context)
+            .asBitmap()
+            .load(imageUrl)
+            .into(object : CustomTarget<Bitmap?>() {
+                fun onResourceReady(
+                    resource: Bitmap,
+                    @Nullable transition: Transition<in Bitmap?>?
+                ) {
+                    // You now have the Bitmap
+                    imageView.setImageBitmap(resource) // Optional: show it in ImageView
+                }
+
+                fun onLoadCleared(@Nullable placeholder: Drawable?) {
+                }
+            })
+
         luckyItems = ArrayList<LuckyItem>()
 
         luckyItems?.add(LuckyItem("1000", "SAR", ContextCompat.getColor(applicationContext, R.color.spin_orange_light), ContextCompat.getColor(applicationContext, R.color.spin_orange), ContextCompat.getColor(applicationContext, android.R.color.white),false, R.drawable.gift_white))

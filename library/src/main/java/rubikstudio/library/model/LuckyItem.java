@@ -1,5 +1,7 @@
 package rubikstudio.library.model;
 
+import android.graphics.Bitmap;
+
 /**
  * Created by kiennguyen on 11/5/16.
  */
@@ -9,7 +11,7 @@ public class LuckyItem {
     public String secondaryText;
     public String currency;
     public int secondaryTextOrientation;
-    public int icon;
+    public Bitmap icon;
     public int color;
     public int textColor;
     public boolean topReward;
@@ -17,7 +19,7 @@ public class LuckyItem {
     public int gradientColor1;
     public int gradientColor2;
 
-    public LuckyItem(String secondaryText, String currency, int gradientColor1, int gradientColor2, int textColor, boolean topReward, int icon) {
+    public LuckyItem(String secondaryText, String currency, int gradientColor1, int gradientColor2, int textColor, boolean topReward, Bitmap icon) {
         this.gradientColor1 = gradientColor1;
         this.gradientColor2 = gradientColor2;
         this.currency = currency;

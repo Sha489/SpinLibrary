@@ -248,9 +248,8 @@ public class PielView extends View {
             if (!TextUtils.isEmpty(mLuckyItemList.get(i).secondaryText))
                 drawSecondaryText(canvas, tmpAngle, mLuckyItemList.get(i).secondaryText, sliceColor, mLuckyItemList.get(i).textColor,mLuckyItemList.get(i).topReward);
 
-            if (mLuckyItemList.get(i).icon != 0)
-                drawImage(canvas, tmpAngle, BitmapFactory.decodeResource(getResources(),
-                        mLuckyItemList.get(i).icon));
+            if (mLuckyItemList.get(i).icon != null)
+                drawImage(canvas, tmpAngle, mLuckyItemList.get(i).icon);
             tmpAngle += sweepAngle;
 
 //            if (textColor == 0)
