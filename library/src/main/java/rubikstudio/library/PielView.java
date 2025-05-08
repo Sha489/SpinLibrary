@@ -234,6 +234,9 @@ public class PielView extends View {
                 mArcPaint.setShader(null);
             }
 
+//            drawSliceBackgroundImage(canvas, tmpAngle, null);
+            drawInnerArcImage(canvas, tmpAngle, null);
+
             if (borderColor != 0 && mEdgeWidth > 0) {
                 mArcPaint.setStyle(Paint.Style.STROKE);
                 mArcPaint.setColor(borderColor);
@@ -256,11 +259,15 @@ public class PielView extends View {
 //                mTextPaint.setColor(mLuckyItemList.get(i).textColor);
         }
 
-        if(showOverlay) {
-            drawOverlayColor(canvas, mOverlayColor);
-        }
+//        if(showOverlay) {
+//            drawOverlayColor(canvas, mOverlayColor);
+//        }
 
 //        drawCenterImage(canvas, drawableCenterImage);
+
+        for (int i = 0; i < mLuckyItemList.size(); i++) {
+
+        }
     }
 
     private void drawBackgroundColor(Canvas canvas, int color) {
@@ -338,6 +345,50 @@ public class PielView extends View {
         canvas.rotate(angle + 90, rect.centerX(), rect.centerY());
 
         canvas.drawBitmap(bitmap, null, rect, null);
+
+        canvas.restore();
+    }
+
+    private void drawInnerArcImage(Canvas canvas, float tmpAngle, Bitmap bitmap) {
+        int imgWidth = mRadius / mLuckyItemList.size();
+
+        float angle = (tmpAngle + 360f / mLuckyItemList.size() / 2);
+        float radian = (float) (angle * Math.PI / 180);
+
+        float distanceFactor = 3f;
+        float distance = (mRadius / 2 / 13) * distanceFactor;
+
+        int x = (int) (mCenter + distance * Math.cos(radian));
+        int y = (int) (mCenter + distance * Math.sin(radian));
+
+//        int x = (int) (mCenter + mRadius / 2 / 13 * Math.cos(radian));
+//        int y = (int) (mCenter + mRadius / 2 / 13 * Math.sin(radian));
+
+//        Rect rect = new Rect(x - imgWidth / 2, y - imgWidth / 2,
+//                x + imgWidth / 2, y + imgWidth / 2);
+
+        float widthScale = 1.7f;   // keep width normal
+        float heightScale = 2.0f;  // double the height
+
+        int halfWidth = (int) (imgWidth * widthScale / 2);
+        int halfHeight = (int) (imgWidth * heightScale / 2);
+
+        Rect rect = new Rect(
+                x - halfWidth,
+                y - halfHeight,
+                x + halfWidth,
+                y + halfHeight
+        );
+
+        canvas.save();
+
+        Paint paint = new Paint();
+        paint.setAlpha(50);
+
+        canvas.rotate(angle + 90, rect.centerX(), rect.centerY());
+
+        canvas.drawBitmap(LuckyWheelUtils.drawableToBitmap(ContextCompat.getDrawable(getContext(), R.drawable.triangle)),
+                null, rect, paint);
 
         canvas.restore();
     }
@@ -448,8 +499,8 @@ public class PielView extends View {
         float initFloat = (tmpAngle + 360f / arraySize / 2);
         float angle = (float) (initFloat * Math.PI / 180);
 
-        int x = (int) (mCenter + mRadius / 2 / 2  * Math.cos(angle));
-        int y = (int) (mCenter + mRadius / 2 / 2 * Math.sin(angle));
+        int x = (int) (mCenter + mRadius / 2 / 1.5 * Math.cos(angle));
+        int y = (int) (mCenter + mRadius / 2 / 1.5 * Math.sin(angle));
 
 //        RectF rect = new RectF(x + textWidth, y,
 //                x - textWidth, y);
@@ -532,7 +583,7 @@ public class PielView extends View {
     public void rotateTo(final int index) {
         targetIndex = index;
         Random rand = new Random();
-        rotateTo(index, 0, true);
+        rotateTo(index, SpinRotation.CLOCKWISE, true);
     }
 
     /**
