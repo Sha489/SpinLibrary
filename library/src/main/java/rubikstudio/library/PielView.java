@@ -334,11 +334,14 @@ public class PielView extends View {
         float angle = (tmpAngle + 360f / mLuckyItemList.size() / 2);
         float radian = (float) (angle * Math.PI / 180);
 
-        int x = (int) (mCenter + mRadius / 2 / 3 * Math.cos(radian));
-        int y = (int) (mCenter + mRadius / 2 / 3 * Math.sin(radian));
+        float distanceFactor = 0.23f;  // 0.0 = center, 1.0 = edge
+        float distance = mRadius * distanceFactor;
 
-        Rect rect = new Rect(x - imgWidth / 4, y - imgWidth / 4,
-                x + imgWidth / 4, y + imgWidth / 4);
+        int x = (int) (mCenter + distance * Math.cos(radian));
+        int y = (int) (mCenter + distance * Math.sin(radian));
+
+        Rect rect = new Rect(x - imgWidth / 8, y - imgWidth / 8,
+                x + imgWidth / 8, y + imgWidth / 8);
 
         canvas.save();
 
@@ -631,8 +634,8 @@ public class PielView extends View {
         float initFloat = (tmpAngle + 360f / arraySize / 2);
         float angle = (float) (initFloat * Math.PI / 180);
 
-        int x = (int) (mCenter + mRadius / 2 / 1.5 * Math.cos(angle));
-        int y = (int) (mCenter + mRadius / 2 / 1.5 * Math.sin(angle));
+        int x = (int) (mCenter + mRadius / 2 / 1.7 * Math.cos(angle));
+        int y = (int) (mCenter + mRadius / 2 / 1.7 * Math.sin(angle));
 
 //        RectF rect = new RectF(x + textWidth, y,
 //                x - textWidth, y);

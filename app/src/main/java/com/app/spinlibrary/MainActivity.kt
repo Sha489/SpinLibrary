@@ -1,6 +1,7 @@
 package com.app.spinlibrary
 
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -10,6 +11,7 @@ import rubikstudio.library.LuckyWheelView
 import rubikstudio.library.model.LuckyItem
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,6 +27,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         luckyWheelView = findViewById(R.id.luckyWheel)
+
+        orginalBitmap = BitmapFactory.decodeResource(
+            applicationContext.getResources(),
+            R.drawable.gift_white
+        )
+
         setData()
     }
 
