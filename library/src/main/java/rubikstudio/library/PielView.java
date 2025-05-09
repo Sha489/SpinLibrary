@@ -355,30 +355,162 @@ public class PielView extends View {
         float angle = (tmpAngle + 360f / mLuckyItemList.size() / 2);
         float radian = (float) (angle * Math.PI / 180);
 
-        float distanceFactor = 3f;
-        float distance = (mRadius / 2 / 13) * distanceFactor;
+        int x = 0, y = 0;
+        Rect rect = null;
 
-        int x = (int) (mCenter + distance * Math.cos(radian));
-        int y = (int) (mCenter + distance * Math.sin(radian));
+        if(mLuckyItemList.size() == 8) {
+
+            float distanceFactor = 3f;
+            float distance = (mRadius / 2 / 13) * distanceFactor;
+
+            x = (int) (mCenter + distance * Math.cos(radian));
+            y = (int) (mCenter + distance * Math.sin(radian));
+
+            float widthScale = 1.7f;   // keep width normal
+            float heightScale = 2.0f;  // double the height
+
+            int halfWidth = (int) (imgWidth * widthScale / 2);
+            int halfHeight = (int) (imgWidth * heightScale / 2);
+
+            rect = new Rect(
+                    x - halfWidth,
+                    y - halfHeight,
+                    x + halfWidth,
+                    y + halfHeight
+            );
 
 //        int x = (int) (mCenter + mRadius / 2 / 13 * Math.cos(radian));
 //        int y = (int) (mCenter + mRadius / 2 / 13 * Math.sin(radian));
 
 //        Rect rect = new Rect(x - imgWidth / 2, y - imgWidth / 2,
 //                x + imgWidth / 2, y + imgWidth / 2);
+        } else if(mLuckyItemList.size() == 7) {
 
-        float widthScale = 1.7f;   // keep width normal
-        float heightScale = 2.0f;  // double the height
+            float distanceFactor = 2.3f;
+            float distance = (mRadius / 2 / 19) * distanceFactor;
 
-        int halfWidth = (int) (imgWidth * widthScale / 2);
-        int halfHeight = (int) (imgWidth * heightScale / 2);
+            x = (int) (mCenter + distance * Math.cos(radian));
+            y = (int) (mCenter + distance * Math.sin(radian));
 
-        Rect rect = new Rect(
-                x - halfWidth,
-                y - halfHeight,
-                x + halfWidth,
-                y + halfHeight
-        );
+            float widthScale = 1.1f;   // keep width normal
+            float heightScale = 1.5f;  // double the height
+
+            int halfWidth = (int) (imgWidth * widthScale / 2);
+            int halfHeight = (int) (imgWidth * heightScale / 2);
+
+            rect = new Rect(
+                    x - halfWidth,
+                    y - halfHeight,
+                    x + halfWidth,
+                    y + halfHeight
+            );
+
+        } else if(mLuckyItemList.size() == 6) {
+
+            float distanceFactor = 3f;
+            float distance = (mRadius / 2 / 13) * distanceFactor;
+
+            x = (int) (mCenter + distance * Math.cos(radian));
+            y = (int) (mCenter + distance * Math.sin(radian));
+
+            float widthScale = 1.1f;   // keep width normal
+            float heightScale = 1.5f;  // double the height
+
+            int halfWidth = (int) (imgWidth * widthScale / 2);
+            int halfHeight = (int) (imgWidth * heightScale / 2);
+
+            rect = new Rect(
+                    x - halfWidth,
+                    y - halfHeight,
+                    x + halfWidth,
+                    y + halfHeight
+            );
+
+        } else if(mLuckyItemList.size() == 5) {
+
+            float distanceFactor = 3f;
+            float distance = (mRadius / 2 / 13) * distanceFactor;
+
+            x = (int) (mCenter + distance * Math.cos(radian));
+            y = (int) (mCenter + distance * Math.sin(radian));
+
+            float widthScale = 1.1f;   // keep width normal
+            float heightScale = 1.5f;  // double the height
+
+            int halfWidth = (int) (imgWidth * widthScale / 2);
+            int halfHeight = (int) (imgWidth * heightScale / 2);
+
+            rect = new Rect(
+                    x - halfWidth,
+                    y - halfHeight,
+                    x + halfWidth,
+                    y + halfHeight
+            );
+
+        } else if(mLuckyItemList.size() == 4) {
+
+            float distanceFactor = 3f;
+            float distance = (mRadius / 2 / 13) * distanceFactor;
+
+            x = (int) (mCenter + distance * Math.cos(radian));
+            y = (int) (mCenter + distance * Math.sin(radian));
+
+            float widthScale = 1.1f;   // keep width normal
+            float heightScale = 1.5f;  // double the height
+
+            int halfWidth = (int) (imgWidth * widthScale / 2);
+            int halfHeight = (int) (imgWidth * heightScale / 2);
+
+            rect = new Rect(
+                    x - halfWidth,
+                    y - halfHeight,
+                    x + halfWidth,
+                    y + halfHeight
+            );
+
+        } else if(mLuckyItemList.size() == 3) {
+
+            float distanceFactor = 0.4f;
+            float distance = (mRadius / 2 / 4) * distanceFactor;
+
+            x = (int) (mCenter + distance * Math.cos(radian));
+            y = (int) (mCenter + distance * Math.sin(radian));
+
+            float widthScale = 1.1f;   // keep width normal
+            float heightScale = 0.3f;  // double the height
+
+            int halfWidth = (int) (imgWidth * widthScale / 2);
+            int halfHeight = (int) (imgWidth * heightScale / 2);
+
+            rect = new Rect(
+                    x - halfWidth,
+                    y - halfHeight,
+                    x + halfWidth,
+                    y + halfHeight
+            );
+
+        } else if(mLuckyItemList.size() == 2) {
+
+            float distanceFactor = 3f;
+            float distance = (mRadius / 2 / 13) * distanceFactor;
+
+            x = (int) (mCenter + distance * Math.cos(radian));
+            y = (int) (mCenter + distance * Math.sin(radian));
+
+            float widthScale = 1.1f;   // keep width normal
+            float heightScale = 1.5f;  // double the height
+
+            int halfWidth = (int) (imgWidth * widthScale / 2);
+            int halfHeight = (int) (imgWidth * heightScale / 2);
+
+            rect = new Rect(
+                    x - halfWidth,
+                    y - halfHeight,
+                    x + halfWidth,
+                    y + halfHeight
+            );
+
+        }
 
         canvas.save();
 
