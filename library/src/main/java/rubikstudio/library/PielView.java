@@ -340,8 +340,8 @@ public class PielView extends View {
         int x = (int) (mCenter + distance * Math.cos(radian));
         int y = (int) (mCenter + distance * Math.sin(radian));
 
-        Rect rect = new Rect(x - imgWidth / 8, y - imgWidth / 8,
-                x + imgWidth / 8, y + imgWidth / 8);
+        Rect rect = new Rect(x - imgWidth / 5, y - imgWidth / 5,
+                x + imgWidth / 5, y + imgWidth / 5);
 
         canvas.save();
 
@@ -662,29 +662,29 @@ public class PielView extends View {
                 y += mTextPaint.descent() - mTextPaint.ascent() - 100;
             } else {
                 y += mTextPaint.descent() - mTextPaint.ascent() - 50;
-                x += mTextPaint.descent() - mTextPaint.ascent() - 50;
+                x += mTextPaint.descent() - mTextPaint.ascent() - 25;
 
                 y += mCurrencyPaint.descent() - mCurrencyPaint.ascent() - 50;
-                x += mCurrencyPaint.descent() - mCurrencyPaint.ascent() - 50;
+                x += mCurrencyPaint.descent() - mCurrencyPaint.ascent() - 25;
             }
 
             Typeface typeface1 = Typeface.createFromAsset(getContext().getAssets(), "fonts/HelveticaNowDisplay-Bold.otf");
             mCurrencyPaint.setTypeface(typeface1);
             mCurrencyPaint.setTextSize(Math.round(
                     TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 7f,r.getDisplayMetrics())));
-            String currency = "SAR";
+//            String currency = "SAR";
             canvas.drawText(mStr, x , y , mTextPaint);
-            if(mStr.length() == 2) {
-                canvas.drawText(currency, x + 30, y - 5, mCurrencyPaint);
-            } else if(mStr.length() == 3) {
-                canvas.drawText(currency, x + 40, y - 5, mCurrencyPaint);
-            } else if(mStr.length() == 4) {
-                canvas.drawText(currency, x + 55, y - 5, mCurrencyPaint);
-            } else if(mStr.length() == 5) {
-                canvas.drawText(currency, x + 65, y - 5, mCurrencyPaint);
-            } else {
-                canvas.drawText(currency, x + 40, y - 5, mCurrencyPaint);
-            }
+//            if(mStr.length() == 2) {
+//                canvas.drawText(currency, x + 30, y - 5, mCurrencyPaint);
+//            } else if(mStr.length() == 3) {
+//                canvas.drawText(currency, x + 40, y - 5, mCurrencyPaint);
+//            } else if(mStr.length() == 4) {
+//                canvas.drawText(currency, x + 55, y - 5, mCurrencyPaint);
+//            } else if(mStr.length() == 5) {
+//                canvas.drawText(currency, x + 65, y - 5, mCurrencyPaint);
+//            } else {
+//                canvas.drawText(currency, x + 40, y - 5, mCurrencyPaint);
+//            }
         }
 
 //        for (String line: mStr.split(" ", 2)) {
