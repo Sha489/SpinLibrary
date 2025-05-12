@@ -18,6 +18,8 @@ class MainActivity : AppCompatActivity() {
     var luckyWheelView: LuckyWheelView? = null
     var luckyItems: ArrayList<LuckyItem> ?= null
     var orginalBitmap: Bitmap ?= null
+    var arrowBlueImage: Bitmap ?= null
+    var arrowOrangeImage: Bitmap ?= null
 
     private val executorService: ExecutorService = Executors.newSingleThreadExecutor()
     private val mainHandler: Handler = Handler(Looper.getMainLooper())
@@ -33,17 +35,33 @@ class MainActivity : AppCompatActivity() {
             R.drawable.gift_white
         )
 
+        arrowBlueImage = BitmapFactory.decodeResource(
+            applicationContext.getResources(),
+            R.drawable.blue_arrow
+        )
+
+        arrowOrangeImage = BitmapFactory.decodeResource(
+            applicationContext.getResources(),
+            R.drawable.orange_arrow
+        )
+
         setData()
     }
 
     fun setData() {
         luckyItems = ArrayList()
-        luckyItems?.add(LuckyItem("1000", "SAR", ContextCompat.getColor(applicationContext, R.color.spin_orange_light), ContextCompat.getColor(applicationContext, R.color.spin_orange), ContextCompat.getColor(applicationContext, android.R.color.white),false, orginalBitmap))
-        luckyItems?.add(LuckyItem("3000", "SAR", ContextCompat.getColor(applicationContext, R.color.spin_blue_light),ContextCompat.getColor(applicationContext, R.color.spin_blue), ContextCompat.getColor(applicationContext, android.R.color.white),false, orginalBitmap))
-        luckyItems?.add(LuckyItem("50", "SAR", ContextCompat.getColor(applicationContext, R.color.spin_orange_light),ContextCompat.getColor(applicationContext, R.color.spin_orange),ContextCompat.getColor(applicationContext, android.R.color.white),false, orginalBitmap))
-        luckyItems?.add(LuckyItem("100", "SAR", ContextCompat.getColor(applicationContext, R.color.spin_blue_light), ContextCompat.getColor(applicationContext, R.color.spin_blue), ContextCompat.getColor(applicationContext, android.R.color.white),false, orginalBitmap))
-        luckyItems?.add(LuckyItem("80", "SAR", ContextCompat.getColor(applicationContext, R.color.spin_orange_light), ContextCompat.getColor(applicationContext, R.color.spin_orange), ContextCompat.getColor(applicationContext, android.R.color.white),false, orginalBitmap))
-        luckyItems?.add(LuckyItem("4000", "SAR", ContextCompat.getColor(applicationContext, R.color.spin_blue_light), ContextCompat.getColor(applicationContext, R.color.spin_blue), ContextCompat.getColor(applicationContext, android.R.color.white),false, orginalBitmap))
+        luckyItems?.add(LuckyItem("1000", "SAR", ContextCompat.getColor(applicationContext, R.color.spin_orange_light), ContextCompat.getColor(applicationContext, R.color.spin_orange), ContextCompat.getColor(applicationContext, android.R.color.white),false,
+            orginalBitmap, arrowBlueImage))
+        luckyItems?.add(LuckyItem("3000", "SAR", ContextCompat.getColor(applicationContext, R.color.spin_blue_light),ContextCompat.getColor(applicationContext, R.color.spin_blue), ContextCompat.getColor(applicationContext, android.R.color.white),false,
+            orginalBitmap, arrowOrangeImage))
+        luckyItems?.add(LuckyItem("50", "SAR", ContextCompat.getColor(applicationContext, R.color.spin_orange_light),ContextCompat.getColor(applicationContext, R.color.spin_orange),ContextCompat.getColor(applicationContext, android.R.color.white),false,
+            orginalBitmap, arrowBlueImage))
+        luckyItems?.add(LuckyItem("100", "SAR", ContextCompat.getColor(applicationContext, R.color.spin_blue_light), ContextCompat.getColor(applicationContext, R.color.spin_blue), ContextCompat.getColor(applicationContext, android.R.color.white),false,
+            orginalBitmap, arrowOrangeImage))
+        luckyItems?.add(LuckyItem("80", "SAR", ContextCompat.getColor(applicationContext, R.color.spin_orange_light), ContextCompat.getColor(applicationContext, R.color.spin_orange), ContextCompat.getColor(applicationContext, android.R.color.white),false,
+            orginalBitmap, arrowBlueImage))
+        luckyItems?.add(LuckyItem("4000", "SAR", ContextCompat.getColor(applicationContext, R.color.spin_blue_light), ContextCompat.getColor(applicationContext, R.color.spin_blue), ContextCompat.getColor(applicationContext, android.R.color.white),false,
+            orginalBitmap, arrowOrangeImage))
 //        luckyItems?.add(LuckyItem("40", "SAR", ContextCompat.getColor(applicationContext, R.color.spin_orange_light), ContextCompat.getColor(applicationContext, R.color.spin_orange), ContextCompat.getColor(applicationContext, android.R.color.white),false, orginalBitmap))
 //        luckyItems?.add(LuckyItem("40", "SAR", ContextCompat.getColor(applicationContext, R.color.spin_blue_light), ContextCompat.getColor(applicationContext, R.color.spin_blue), ContextCompat.getColor(applicationContext, android.R.color.white),false, orginalBitmap))
 

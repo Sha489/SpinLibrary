@@ -235,7 +235,8 @@ public class PielView extends View {
             }
 
 //            drawSliceBackgroundImage(canvas, tmpAngle, null);
-            drawInnerArcImage(canvas, tmpAngle, null);
+            drawInnerArcImage(canvas, tmpAngle, mLuckyItemList.get(i).arrowImage);
+
 
             if (borderColor != 0 && mEdgeWidth > 0) {
                 mArcPaint.setStyle(Paint.Style.STROKE);
@@ -410,14 +411,14 @@ public class PielView extends View {
 
         } else if(mLuckyItemList.size() == 6) {
 
-            float distanceFactor = 0.7f;
+            float distanceFactor = 1f;
             float distance = (mRadius / 2 / 5) * distanceFactor;
 
             x = (int) (mCenter + distance * Math.cos(radian));
             y = (int) (mCenter + distance * Math.sin(radian));
 
-            float widthScale = 1.0f;   // keep width normal
-            float heightScale = 0.8f;  // double the height
+            float widthScale = 1.1f;   // keep width normal
+            float heightScale = 1.3f;  // double the height
 
             int halfWidth = (int) (imgWidth * widthScale / 2);
             int halfHeight = (int) (imgWidth * heightScale / 2);
@@ -522,8 +523,7 @@ public class PielView extends View {
 
         canvas.rotate(angle + 90, rect.centerX(), rect.centerY());
 
-        canvas.drawBitmap(LuckyWheelUtils.drawableToBitmap(ContextCompat.getDrawable(getContext(), R.drawable.triangle)),
-                null, rect, paint);
+        canvas.drawBitmap(bitmap,null, rect, paint);
 
         canvas.restore();
     }

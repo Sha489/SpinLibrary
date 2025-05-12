@@ -12,6 +12,7 @@ public class LuckyItem {
     public String currency;
     public int secondaryTextOrientation;
     public Bitmap icon;
+    public Bitmap arrowImage;
     public int color;
     public int textColor;
     public boolean topReward;
@@ -19,7 +20,7 @@ public class LuckyItem {
     public int gradientColor1;
     public int gradientColor2;
 
-    public LuckyItem(String secondaryText, String currency, int gradientColor1, int gradientColor2, int textColor, boolean topReward, Bitmap icon) {
+    public LuckyItem(String secondaryText, String currency, int gradientColor1, int gradientColor2, int textColor, boolean topReward, Bitmap icon, Bitmap arrowImage) {
         this.gradientColor1 = gradientColor1;
         this.gradientColor2 = gradientColor2;
         this.currency = currency;
@@ -27,6 +28,7 @@ public class LuckyItem {
         this.textColor = textColor;
         this.topReward = topReward;
         this.icon = icon;
+        this.arrowImage = arrowImage;
     }
 
     public LuckyItem(String secondaryText, int textColor) {
