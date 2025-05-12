@@ -410,14 +410,14 @@ public class PielView extends View {
 
         } else if(mLuckyItemList.size() == 6) {
 
-            float distanceFactor = 3f;
-            float distance = (mRadius / 2 / 13) * distanceFactor;
+            float distanceFactor = 0.7f;
+            float distance = (mRadius / 2 / 5) * distanceFactor;
 
             x = (int) (mCenter + distance * Math.cos(radian));
             y = (int) (mCenter + distance * Math.sin(radian));
 
-            float widthScale = 1.1f;   // keep width normal
-            float heightScale = 1.5f;  // double the height
+            float widthScale = 1.0f;   // keep width normal
+            float heightScale = 0.8f;  // double the height
 
             int halfWidth = (int) (imgWidth * widthScale / 2);
             int halfHeight = (int) (imgWidth * heightScale / 2);
