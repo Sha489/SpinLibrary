@@ -9,9 +9,13 @@
     <color name="white">#FFFFFFFF</color>
     <color name="overlay_color">#1A000000</color>
 
-    <color name="spin_orange_light">#FDDC72</color>
-    <color name="spin_orange">#FC4F00</color>
+    <color name="spin_orange_gradient_1">#FC4F00</color>
+    <color name="spin_orange_gradient_2">#F49032</color>
+    <color name="spin_orange_gradient_3">#FCB81F</color>
+    <color name="spin_orange_gradient_4">#F7CA0F</color>
 
-    <color name="spin_blue">#082676</color>
-    <color name="spin_blue_light">#76B7F0</color>
+    <color name="spin_blue_gradient_1">#0A2C7B</color>
+    <color name="spin_blue_gradient_2">#3A5AA3</color>
+    <color name="spin_blue_gradient_3">#3B82BD</color>
+    <color name="spin_blue_gradient_4">#76B7F0</color>
 </resources>

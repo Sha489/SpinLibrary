@@ -221,7 +221,7 @@ public class PielView extends View {
 
             Shader sliceGradient = new LinearGradient(
                     startX, startY, endX, endY,
-                    new int[]{mLuckyItemList.get(i).gradientColor2, mLuckyItemList.get(i).gradientColor1},
+                    new int[]{mLuckyItemList.get(i).gradientColor1, mLuckyItemList.get(i).gradientColor2, mLuckyItemList.get(i).gradientColor3, mLuckyItemList.get(i).gradientColor4},
                     null,
                     Shader.TileMode.CLAMP
             );
@@ -364,14 +364,14 @@ public class PielView extends View {
 
         if(mLuckyItemList.size() == 8) {
 
-            float distanceFactor = 3f;
-            float distance = (mRadius / 2 / 13) * distanceFactor;
+            float distanceFactor = 2f;
+            float distance = (mRadius / 2 / 11) * distanceFactor;
 
             x = (int) (mCenter + distance * Math.cos(radian));
             y = (int) (mCenter + distance * Math.sin(radian));
 
-            float widthScale = 1.7f;   // keep width normal
-            float heightScale = 2.0f;  // double the height
+            float widthScale = 0.9f;   // keep width normal
+            float heightScale = 1.5f;  // double the height
 
             int halfWidth = (int) (imgWidth * widthScale / 2);
             int halfHeight = (int) (imgWidth * heightScale / 2);
@@ -391,7 +391,7 @@ public class PielView extends View {
         } else if(mLuckyItemList.size() == 7) {
 
             float distanceFactor = 2.3f;
-            float distance = (mRadius / 2 / 19) * distanceFactor;
+            float distance = (mRadius / 2 / 11) * distanceFactor;
 
             x = (int) (mCenter + distance * Math.cos(radian));
             y = (int) (mCenter + distance * Math.sin(radian));
@@ -432,14 +432,14 @@ public class PielView extends View {
 
         } else if(mLuckyItemList.size() == 5) {
 
-            float distanceFactor = 3f;
-            float distance = (mRadius / 2 / 13) * distanceFactor;
+            float distanceFactor = 2f;
+            float distance = (mRadius / 2 / 10) * distanceFactor;
 
             x = (int) (mCenter + distance * Math.cos(radian));
             y = (int) (mCenter + distance * Math.sin(radian));
 
             float widthScale = 1.1f;   // keep width normal
-            float heightScale = 1.5f;  // double the height
+            float heightScale = 1.0f;  // double the height
 
             int halfWidth = (int) (imgWidth * widthScale / 2);
             int halfHeight = (int) (imgWidth * heightScale / 2);
@@ -453,14 +453,14 @@ public class PielView extends View {
 
         } else if(mLuckyItemList.size() == 4) {
 
-            float distanceFactor = 3f;
-            float distance = (mRadius / 2 / 13) * distanceFactor;
+            float distanceFactor = 2f;
+            float distance = (mRadius / 2 / 11) * distanceFactor;
 
             x = (int) (mCenter + distance * Math.cos(radian));
             y = (int) (mCenter + distance * Math.sin(radian));
 
             float widthScale = 1.1f;   // keep width normal
-            float heightScale = 1.5f;  // double the height
+            float heightScale = 0.8f;  // double the height
 
             int halfWidth = (int) (imgWidth * widthScale / 2);
             int halfHeight = (int) (imgWidth * heightScale / 2);
@@ -474,14 +474,14 @@ public class PielView extends View {
 
         } else if(mLuckyItemList.size() == 3) {
 
-            float distanceFactor = 0.4f;
-            float distance = (mRadius / 2 / 4) * distanceFactor;
+            float distanceFactor = 2f;
+            float distance = (mRadius / 2 / 11) * distanceFactor;
 
             x = (int) (mCenter + distance * Math.cos(radian));
             y = (int) (mCenter + distance * Math.sin(radian));
 
-            float widthScale = 1.1f;   // keep width normal
-            float heightScale = 0.3f;  // double the height
+            float widthScale = 1.4f;   // keep width normal
+            float heightScale = 0.6f;  // double the height
 
             int halfWidth = (int) (imgWidth * widthScale / 2);
             int halfHeight = (int) (imgWidth * heightScale / 2);
@@ -495,14 +495,14 @@ public class PielView extends View {
 
         } else if(mLuckyItemList.size() == 2) {
 
-            float distanceFactor = 3f;
-            float distance = (mRadius / 2 / 13) * distanceFactor;
+            float distanceFactor = 1f;
+            float distance = (mRadius / 2 / 11) * distanceFactor;
 
             x = (int) (mCenter + distance * Math.cos(radian));
             y = (int) (mCenter + distance * Math.sin(radian));
 
             float widthScale = 1.1f;   // keep width normal
-            float heightScale = 1.5f;  // double the height
+            float heightScale = 0.3f;  // double the height
 
             int halfWidth = (int) (imgWidth * widthScale / 2);
             int halfHeight = (int) (imgWidth * heightScale / 2);
