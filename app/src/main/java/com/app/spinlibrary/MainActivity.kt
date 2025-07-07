@@ -87,14 +87,14 @@ class MainActivity : AppCompatActivity() {
             ContextCompat.getColor(applicationContext, android.R.color.white),
             false,
             orginalBitmap, arrowBlueImage))
-        luckyItems?.add(LuckyItem("4000", "SAR",
-            ContextCompat.getColor(applicationContext, R.color.spin_blue_gradient_1),
-            ContextCompat.getColor(applicationContext, R.color.spin_blue_gradient_2),
-            ContextCompat.getColor(applicationContext, R.color.spin_blue_gradient_3),
-            ContextCompat.getColor(applicationContext, R.color.spin_blue_gradient_4),
-            ContextCompat.getColor(applicationContext, android.R.color.white),
-            false,
-            orginalBitmap, arrowOrangeImage))
+//        luckyItems?.add(LuckyItem("4000", "SAR",
+//            ContextCompat.getColor(applicationContext, R.color.spin_blue_gradient_1),
+//            ContextCompat.getColor(applicationContext, R.color.spin_blue_gradient_2),
+//            ContextCompat.getColor(applicationContext, R.color.spin_blue_gradient_3),
+//            ContextCompat.getColor(applicationContext, R.color.spin_blue_gradient_4),
+//            ContextCompat.getColor(applicationContext, android.R.color.white),
+//            false,
+//            orginalBitmap, arrowOrangeImage))
 //        luckyItems?.add(LuckyItem("40", "SAR", ContextCompat.getColor(applicationContext, R.color.spin_orange_light), ContextCompat.getColor(applicationContext, R.color.spin_orange), ContextCompat.getColor(applicationContext, android.R.color.white),false,
 //            orginalBitmap, arrowBlueImage))
 //        luckyItems?.add(LuckyItem("40", "SAR", ContextCompat.getColor(applicationContext, R.color.spin_blue_light), ContextCompat.getColor(applicationContext, R.color.spin_blue), ContextCompat.getColor(applicationContext, android.R.color.white),false,

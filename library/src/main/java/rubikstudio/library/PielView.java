@@ -330,7 +330,10 @@ public class PielView extends View {
      * @param bitmap
      */
     private void drawImage(Canvas canvas, float tmpAngle, Bitmap bitmap) {
-        int imgWidth = mRadius / mLuckyItemList.size();
+        int imgWidth = mRadius / 5;
+        if(mLuckyItemList.size() >5){
+            imgWidth = mRadius / mLuckyItemList.size();
+        }
 
         float angle = (tmpAngle + 360f / mLuckyItemList.size() / 2);
         float radian = (float) (angle * Math.PI / 180);
